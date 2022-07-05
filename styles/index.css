@@ -1,4 +1,5 @@
-.main-container {
+/* Style for header div */
+#header {
     max-width: 1200px;
     margin: 0 auto;
 }
