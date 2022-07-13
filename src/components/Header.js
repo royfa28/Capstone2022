@@ -1,5 +1,6 @@
 import React from 'react';
-import './styles/header.css'
+import Navigation from './Navigation'
+import './styles/header.css';
 
 export default function Header() {
     return (
@@ -20,18 +21,16 @@ export default function Header() {
 
                         {/* <!-- Logo --> */}
                         <div className="col-2">
-                            <h1>Games2Sell</h1>
+                            <h3>Games2Sell</h3>
                         </div>
 
                         {/* <!-- Where the search bar and function --> */}
                         <div className="col-8">
                             <div className="search-container">
-                                {/* <form id="form" role="search">
-                                    <input type="search" id="query" name="q" placeholder="Search..."
-                                        aria-label="Search through site content">
-                                        <button type="submit"><i className="fa fa-search"></i></button>
-                                    </input>
-                                </form>  */}
+                                <form action="/" method="get">
+                                    <input type="text" id="header-search" placeholder="Search blog posts" name="s" />
+                                    <button type="submit">Search</button>
+                                </form>
                             </div>
                         </div>
 
@@ -48,61 +47,32 @@ export default function Header() {
 
                 {/* <!-- Navigation for different location --> */}
 
-                <nav className="navbar navbar-expand-md navbar-light bg-light">
-                    <div>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span>Categories</span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarNav">
-                            <ul className="navbar-nav justify-content-between">
-                                <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#">PS 4</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">PS 5</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">XBOX</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">Nintendo Switch</a>
-                                </li>
-                            </ul>
-                        </div>
+                <Navigation />
+                {/* <nav className="navbar navbar-expand-md navbar-light bg-light">
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span>Categories</span>
+                    </button>
+
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav justify-content-between">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href="#">PS 4</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">PS 5</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">XBOX</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Nintendo Switch</a>
+                            </li>
+                        </ul>
+
                     </div>
-                </nav>
+                </nav> */}
             </article>
         </div>
     );
 };
-
-// export default function Header() {
-//     return (
-//         <AppBar position="static">
-//             <Toolbar>
-//                 {/*Inside the IconButton, we
-// 		can render various icons*/}
-//                 <IconButton
-//                     size="large"
-//                     edge="start"
-//                     color="inherit"
-//                     aria-label="menu"
-//                     sx={{ mr: 2 }}
-//                 >
-//                     {/*This is a simple Menu
-// 			Icon wrapped in Icon */}
-//                     <MenuIcon />
-//                 </IconButton>
-//                 {/* The Typography component applies
-// 		default font weights and sizes */}
-
-//                 <Typography variant="h6"
-//                     component="div" sx={{ flexGrow: 1 }}>
-//                     GeeksforGeeks Header
-//                 </Typography>
-//                 <Button color="inherit">Login</Button>
-//             </Toolbar>
-//         </AppBar>
-//     );
-// }

@@ -32,3 +32,7 @@ input {
 .topnav .icon {
     display: none;
 }
+
+.navbar-nav, #navbarNav{
+    width: 100%;
+}
