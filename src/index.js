@@ -1,16 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import App from './components/App';
+import App from './App';
 
-ReactDom.render(<App />, document.getElementById('root'));
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Include header HTML file
-// $(document).ready(function () {
-//     $('#header').load('header.html');
-// });
-
-// // Include main-page html file
-// $(document).ready(function () {
-//     $('#main-page').load('main-page.html');
-// });
+ReactDom.render(
+    <App />, document.getElementById('root')
+);
