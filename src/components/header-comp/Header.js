@@ -2,12 +2,15 @@ import React from 'react';
 import Navigation from './Navigation'
 import './header.css';
 import LoginModal from '../login-comp/Login';
+import { useMyCtxProvider } from '../../context/mycontext';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default function Header() {
-    const [modalShow, setModalShow] = React.useState(false);
+
+    // Use my context provider to handle Modal show / Hide
+    const { showModal,  closeModal, modalShow } = useMyCtxProvider();
 
     return (
 
@@ -31,11 +34,11 @@ export default function Header() {
 
                         {/* <!-- If not logged in, will show register/login if not will show account --> */}
                         <div className="col-1">
-                            <Button variant="primary" onClick={() => setModalShow(true)}>
+                            <Button variant="primary" onClick={() => {showModal();}}>
                                 Login
                             </Button>
-
-                            <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+                            
+                            <LoginModal show={modalShow} onHide={() => closeModal(false)} />
 
                         </div>
                         <div className="col-1">

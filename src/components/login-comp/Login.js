@@ -2,28 +2,42 @@ import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+
+import { useMyCtxProvider } from "../../context/mycontext";
 import './login.css';
 
 export default function LoginModal(props) {
 
-    const [show, setShow] = useState(false);
+    // Use my context provider to handle Modal show / Hide
+    const { closeModal, register, signin, signup } = useMyCtxProvider();
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    function changeState(registerStatus) {
+
+        if (registerStatus === true) {
+            signin();
+        } else if (registerStatus === false) {
+            signup();
+        }
+    }
 
     return (
-
 
         <Modal {...props} centered >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    {register ? "Register" : "Login"}
                 </Modal.Title>
             </Modal.Header>
 
             <Modal.Body >
                 <Form className="modal-container">
-                    {/* <Container> */}
+                    {register ?
+                        <Form.Group className="mb-3" controlId="formBasicEmail" id="fullname">
+                            <Form.Label>Full name</Form.Label>
+                            <Form.Control type="email" placeholder="Enter full name" />
+                        </Form.Group> : null }
+
+
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" />
@@ -36,15 +50,16 @@ export default function LoginModal(props) {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
-                    {/* </Container> */}
+
+                    <Form.Label onClick={() => changeState(register)}>{register ? "Already a user? " : "Not a user? "}</Form.Label>
                 </Form>
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="secondary" onClick={closeModal}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={closeModal}>
                     Save Changes
                 </Button>
             </Modal.Footer>
