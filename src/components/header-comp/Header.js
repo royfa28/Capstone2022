@@ -23,7 +23,7 @@ export default function Header() {
 
                         {/* <!-- Where the search bar and function --> */}
                         <div className="col-8">
-                            <Form className="d-flex">
+                            <Form className="d-flex header-bar">
                                 <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
                                 <Button variant="outline-success">Search</Button>
                             </Form>
@@ -35,7 +35,7 @@ export default function Header() {
                                 Login
                             </Button>
 
-                            <LoginModal show={modalShow} onHide={() => setModalShow(false)}/>
+                            <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
 
                         </div>
                         <div className="col-1">
