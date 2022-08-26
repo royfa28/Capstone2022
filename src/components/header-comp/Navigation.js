@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useNavigate } from "react-router-dom";
@@ -10,7 +9,6 @@ export default function NavBar() {
     return (
         <div className='bg-info text-white'>
             <Navbar collapseOnSelect expand="md" >
-
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
                 <Navbar.Collapse id="responsive-navbar-nav">

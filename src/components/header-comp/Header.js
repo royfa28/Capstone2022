@@ -18,7 +18,6 @@ export default function Header() {
     function changeModal() {
         setModal();
     }
-
     console.log("Modal status: " + modalShow);
     return (
 
@@ -26,7 +25,6 @@ export default function Header() {
             <article>
                 <header>
                     <div className="row">
-
                         {/* <!-- Logo --> */}
                         <div className="col-2">
                             <h3><Link to="/">Games2Sell</Link></h3>
@@ -42,9 +40,11 @@ export default function Header() {
                         {/* <!-- If not logged in, will show register/login if not will show account --> */}
                         <div className="col-1">
                             {loggedIn ?
-                                <Button variant="primary" onClick={changeModal}>
-                                    Account
-                                </Button> 
+                                <Link to="/Account-Details">
+                                    <Button variant="primary">
+                                        Account
+                                    </Button>
+                                </Link>
                                 :
                                 <Button variant="primary" onClick={changeModal}>
                                     Login
@@ -58,7 +58,6 @@ export default function Header() {
                             <img src={cartLogo} alt='Shopping cart' />
                         </div>
                     </div>
-
                 </header>
             </article>
         </div>
