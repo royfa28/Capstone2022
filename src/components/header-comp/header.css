@@ -1,10 +1,10 @@
+.row{
+    margin-left: 0;
+}
+
 .header-bar {
     /* background-color: #4654e1; */
     height: 44px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
 }
 
 input {

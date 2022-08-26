@@ -1,0 +1,22 @@
+.container{
+    margin: 0 auto;
+    /* justify-content: space-between; */
+}
+
+.Card-Row{
+    margin: 0 auto;
+    width: 100%;
+    background-color: turquoise;
+    justify-content: space-between;
+}
+
+.Product-Card{
+    margin: 5px 5px;
+    padding: 5px;
+    /* max-width: 200px; */
+}
+
+.Card-Image{
+    max-width: 200px;
+
+}
