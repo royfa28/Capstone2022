@@ -5,7 +5,7 @@ import Homepage from './components/homepage-comp/Homepage';
 const App = () => {
   return (
     <div className='container'>
-      <Header />Hi
+      <Header />
       <Homepage />
     </div>
   )
