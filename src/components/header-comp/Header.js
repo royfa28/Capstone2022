@@ -1,9 +1,11 @@
 import React from 'react';
 import Navigation from './Navigation'
+import { Link, useNavigate } from "react-router-dom";
 import './header.css';
 import LoginModal from '../login-comp/Login';
 
 import { useMyLoginContext } from '../../context/loginContext';
+
 import cartLogo from '../../assets/shopping-cart.png';
 
 import Form from 'react-bootstrap/Form';
@@ -23,14 +25,13 @@ export default function Header() {
 
                         {/* <!-- Logo --> */}
                         <div className="col-2">
-                            <h3>Games2Sell</h3>
+                            <h3><Link to="/">Games2Sell</Link></h3>
                         </div>
 
                         {/* <!-- Where the search bar and function --> */}
                         <div className="col-8">
                             <Form className="d-flex header-bar">
                                 <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
-
                             </Form>
                         </div>
 

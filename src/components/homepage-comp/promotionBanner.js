@@ -15,7 +15,7 @@ function PromotionBanner() {
     return (
         <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-banner'>
             <Carousel.Item>
-                <a href=''>
+                <a href='#'>
                     <img className="d-block w-100" src={Banner1} alt="First slide" />
                 </a>
 
@@ -27,13 +27,13 @@ function PromotionBanner() {
             </Carousel.Item>
 
             <Carousel.Item>
-                <a href=''>
+                <a href='#'>
                     <img className="d-block w-100" src={Banner1} alt="Second slide" />
                 </a>
             </Carousel.Item>
 
             <Carousel.Item>
-                <a href=''>
+                <a href='#'>
                     <img className="d-block w-100" src={Banner1} alt="Third slide" />
                 </a>
             </Carousel.Item>
