@@ -7,26 +7,24 @@ function LoginContext(props) {
 
     const [modalShow, setModalShow] = useState(false);
     const [register, setRegister] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
-    const showModal = () => {
-        console.log("Show Modal");
-        setModalShow(true);
-    };
-
-    const closeModal = () => {
-        setModalShow(false);
-    };
-
-    const signin = () =>{
-        setRegister(false);
+    const setModal = () => {
+        setModalShow(!modalShow);
     }
 
-    const signup = () =>{
-        setRegister(true);
+    const registerStatus = () => {
+        // console.log("Register status " + register);
+        setRegister(!register);
+    }
+
+    const loginStatus = () => {
+        setLoggedIn(!loggedIn);
+        // console.log("Login status " + loggedIn);
     }
 
     return (
-        <loginCxt.Provider value={{ modalShow, showModal, closeModal, register, signin, signup }}>
+        <loginCxt.Provider value={{ modalShow, register, loggedIn, loginStatus, registerStatus, setModal }}>
             {props.children}
         </loginCxt.Provider>
     );
