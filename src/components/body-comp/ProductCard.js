@@ -2,6 +2,8 @@ import React from 'react'
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 
+import Spiderman from '../../assets/Product Image/Spiderman.jpg';
+
 import "./ProductCard.css";
 
 export default function ProductCard() {
@@ -9,7 +11,7 @@ export default function ProductCard() {
     return (
         <CardGroup>
             <Card className="Product-Card">
-                <Card.Img className="Card-Image" variant="top" src="holder.js/100px160" />
+                <Card.Img className="Card-Image" variant="top" src={Spiderman} />
                 <Card.Body>
                     <Card.Title>Card title</Card.Title>
                 </Card.Body>

@@ -9,15 +9,19 @@ import './login.css';
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { closeModal, register, signin, signup } = useMyLoginContext();
+    const { setModal, register, loginStatus, registerStatus } = useMyLoginContext();
 
-    function changeState(registerStatus) {
+    function changeState() {
+        registerStatus();
+    }
 
-        if (registerStatus === true) {
-            signin();
-        } else if (registerStatus === false) {
-            signup();
-        }
+    function checkLogin() {
+        loginStatus();
+        setModal();
+    }
+
+    function changeModal() {
+        setModal();
     }
 
     return (
@@ -51,15 +55,15 @@ export default function LoginModal(props) {
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
 
-                    <Form.Label onClick={() => changeState(register)}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
+                    <Form.Label onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
                 </Form>
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeModal}>
+                <Button variant="secondary" onClick={changeModal}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={closeModal}>
+                <Button variant="primary" onClick={checkLogin}>
                     Save Changes
                 </Button>
             </Modal.Footer>

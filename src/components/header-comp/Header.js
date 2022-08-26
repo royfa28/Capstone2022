@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigation from './Navigation'
 import { Link, useNavigate } from "react-router-dom";
 import './header.css';
 import LoginModal from '../login-comp/Login';
@@ -14,8 +13,13 @@ import Button from 'react-bootstrap/Button';
 export default function Header() {
 
     // Use my context provider to handle Modal show / Hide
-    const { showModal, closeModal, modalShow } = useMyLoginContext();
+    const { setModal, modalShow, loggedIn } = useMyLoginContext();
 
+    function changeModal() {
+        setModal();
+    }
+
+    console.log("Modal status: " + modalShow);
     return (
 
         <div>
@@ -37,11 +41,16 @@ export default function Header() {
 
                         {/* <!-- If not logged in, will show register/login if not will show account --> */}
                         <div className="col-1">
+                            {loggedIn ?
+                                <Button variant="primary" onClick={changeModal}>
+                                    Account
+                                </Button> 
+                                :
+                                <Button variant="primary" onClick={changeModal}>
+                                    Login
+                                </Button>}
 
-                            <Button variant="primary" onClick={() => { showModal(); }}>
-                                Login
-                            </Button>
-                            <LoginModal show={modalShow} onHide={() => closeModal(false)} />
+                            <LoginModal show={modalShow} onHide={changeModal} />
                         </div>
 
                         <div className="col-1">
@@ -51,8 +60,6 @@ export default function Header() {
                     </div>
 
                 </header>
-                {/* <!-- Navigation for different location --> */}
-                <Navigation />
             </article>
         </div>
     );
