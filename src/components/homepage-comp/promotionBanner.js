@@ -1,7 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 
-export default function PromotionBanner() {
+import './promotionBanner.css';
+import Banner1 from '../../assets/Banners/Banner1.png';
+
+function PromotionBanner() {
+
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
+
     return (
-        <div>promotionBanner</div>
+        <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-banner'>
+            <Carousel.Item>
+                <a href=''>
+                    <img className="d-block w-100" src={Banner1} alt="First slide" />
+                </a>
+
+                {/* No caption needed for now
+                <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption> */}
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <a href=''>
+                    <img className="d-block w-100" src={Banner1} alt="Second slide" />
+                </a>
+            </Carousel.Item>
+
+            <Carousel.Item>
+                <a href=''>
+                    <img className="d-block w-100" src={Banner1} alt="Third slide" />
+                </a>
+            </Carousel.Item>
+
+        </Carousel>
     )
 }
+
+
+export default PromotionBanner;
