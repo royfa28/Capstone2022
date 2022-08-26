@@ -1,10 +1,9 @@
 import { createContext, useContext, useState } from "react";
-import LoginModal from "../components/login-comp/Login";
 
-const myCtx = createContext();
-export const useMyCtxProvider = () => useContext(myCtx);
+const loginCxt = createContext();
+export const useMyLoginContext = () => useContext(loginCxt);
 
-function Mycontext(props) {
+function LoginContext(props) {
 
     const [modalShow, setModalShow] = useState(false);
     const [register, setRegister] = useState(false);
@@ -27,10 +26,10 @@ function Mycontext(props) {
     }
 
     return (
-        <myCtx.Provider value={{ modalShow, showModal, closeModal, register, signin, signup }}>
+        <loginCxt.Provider value={{ modalShow, showModal, closeModal, register, signin, signup }}>
             {props.children}
-        </myCtx.Provider>
+        </loginCxt.Provider>
     );
 }
 
-export default Mycontext
+export default LoginContext

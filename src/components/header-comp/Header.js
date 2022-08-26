@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation'
 import './header.css';
 import LoginModal from '../login-comp/Login';
-import { useMyCtxProvider } from '../../context/mycontext';
+import { useMyLoginContext } from '../../context/loginContext';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 export default function Header() {
 
     // Use my context provider to handle Modal show / Hide
-    const { showModal,  closeModal, modalShow } = useMyCtxProvider();
+    const { showModal,  closeModal, modalShow } = useMyLoginContext();
 
     return (
 

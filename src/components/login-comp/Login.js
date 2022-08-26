@@ -1,15 +1,15 @@
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-import { useMyCtxProvider } from "../../context/mycontext";
+import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
 
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { closeModal, register, signin, signup } = useMyCtxProvider();
+    const { closeModal, register, signin, signup } = useMyLoginContext();
 
     function changeState(registerStatus) {
 
@@ -31,12 +31,12 @@ export default function LoginModal(props) {
 
             <Modal.Body >
                 <Form className="modal-container">
+                    {/* If Register is true show content below if not null */}
                     {register ?
                         <Form.Group className="mb-3" controlId="formBasicEmail" id="fullname">
                             <Form.Label>Full name</Form.Label>
                             <Form.Control type="email" placeholder="Enter full name" />
-                        </Form.Group> : null }
-
+                        </Form.Group> : null}
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
@@ -51,7 +51,7 @@ export default function LoginModal(props) {
                         <Form.Control type="password" placeholder="Password" />
                     </Form.Group>
 
-                    <Form.Label onClick={() => changeState(register)}>{register ? "Already a user? " : "Not a user? "}</Form.Label>
+                    <Form.Label onClick={() => changeState(register)}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
                 </Form>
             </Modal.Body>
 
