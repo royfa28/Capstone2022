@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './header.css';
 import LoginModal from '../login-comp/Login';
+import NavBar from './Navigation';
 
 import { useMyLoginContext } from '../../context/loginContext';
 
@@ -59,6 +60,8 @@ export default function Header() {
                         </div>
                     </div>
                 </header>
+
+                <NavBar />
             </article>
         </div>
     );

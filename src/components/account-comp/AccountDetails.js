@@ -2,10 +2,18 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 
 import { useMyAccountContext } from "../../context/accountContext";
+import { useMyLoginContext } from '../../context/loginContext';
 
 export default function AccountDetails() {
+
+    const { loginStatus } = useMyLoginContext();
+
+    function checkLogin() {
+        loginStatus();
+    }
 
     // const { accountNav, setAccountNav } = useMyAccountContext();
 
@@ -26,7 +34,7 @@ export default function AccountDetails() {
                     </Nav.Item>
 
                     <Nav.Item>
-                        <Nav.Link href="#fourth">Logout</Nav.Link>
+                        <Nav.Link> <Link to="/" onClick={checkLogin}>Logout</Link></Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Card.Header>

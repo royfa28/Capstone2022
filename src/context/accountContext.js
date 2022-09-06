@@ -12,7 +12,7 @@ function AccountContext(props) {
 
     return (
         <accountCxt.Provider value={{ accountNav, setNav }}>
-            {props.childre}
+            {props.children}
         </accountCxt.Provider>
     );
 }

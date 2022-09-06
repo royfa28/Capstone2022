@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import ProductCard from './ProductCard';
 
@@ -15,8 +16,10 @@ export default function ProductList() {
 
     return (
         <div className="container-lg">
-            {productListText}
-            <ProductCard />
+            {/* {productListText} */}
+            <Link to="/ProductDetails/">
+                <ProductCard />
+            </Link>
         </div>
     )
 }
