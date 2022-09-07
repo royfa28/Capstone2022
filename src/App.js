@@ -7,6 +7,7 @@ import Homepage from './components/homepage-comp/Homepage';
 import ProductList from './components/body-comp/ProductList';
 import AccountDetails from './components/account-comp/AccountDetails';
 import ProductDetails from './components/body-comp/ProductDetails';
+import ProductData from "./local-database/allProducts.json";
 
 const App = () => {
   return (

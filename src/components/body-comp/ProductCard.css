@@ -12,3 +12,11 @@
     margin-top: 0 !important;
     background-color: turquoise;
 }
+
+a{
+    text-decoration: none !important;
+}
+
+.card-body{
+    padding: 0px !important;
+}

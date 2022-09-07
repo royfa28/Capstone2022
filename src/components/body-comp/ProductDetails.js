@@ -1,13 +1,21 @@
 import React from 'react';
 import ProductBanner from "./ProductBanner";
+import { useParams } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Nav from 'react-bootstrap/Nav'
+import Nav from 'react-bootstrap/Nav';
+
+import ProductData from "../../local-database/allProducts.json";
 
 export default function ProductDetails() {
+
+    let params = useParams();
+    let Index = params.productID - 1;
+
+    // console.log("Product Name " + ProductData[Index].productTitle);
     return (
         <div>
             <Row>
@@ -15,14 +23,12 @@ export default function ProductDetails() {
                     <ProductBanner />
                 </Col>
             </Row>
-
             <Row>
                 <Col xs={12}>
-                    Game Title
+                    {ProductData[Index].productTitle}
                 </Col>
-
+                
                 <Col md={8} xs={12}>
-
                     <Card>
                         <Card.Header>
                             <Nav justify="true" variant="tabs" defaultActiveKey="#first">
@@ -37,9 +43,8 @@ export default function ProductDetails() {
                         </Card.Header>
 
                         <Card.Body>
-                            <Card.Title>Special title treatment</Card.Title>
                             <Card.Text>
-                                With supporting text below as a natural lead-in to additional content.
+                                {ProductData[Index].productDescription}
                             </Card.Text>
                             <Button variant="primary">Go somewhere</Button>
                         </Card.Body>
