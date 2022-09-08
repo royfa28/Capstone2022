@@ -1,13 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
 const ShoppingCartCxt = createContext({});
 
 export const useMyCartContext = () => useContext(ShoppingCartCxt);
 
 function ShoppingCartContext(props) {
-    
-    const [cart, setCart] = useState();
-    const quantity = useState(0);
 
     return (
         <ShoppingCartCxt.Provider value={{}}>

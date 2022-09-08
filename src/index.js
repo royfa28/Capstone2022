@@ -19,6 +19,5 @@ root.render(
                 </MyAccountContext>
             </MyLoginContext>
         </MyShoppingCartContext>
-
     </BrowserRouter>
 );

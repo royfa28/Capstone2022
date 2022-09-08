@@ -10,6 +10,7 @@ import ProductDetails from './components/body-comp/ProductDetails';
 import ProductData from "./local-database/allProducts.json";
 
 const App = () => {
+
   return (
     <Container fluid="lg">
       <Header />
@@ -19,8 +20,6 @@ const App = () => {
         <Route path="/Account-Details" element={<AccountDetails />} />
         <Route path="/ProductDetails/:productID" element={<ProductDetails />} />
       </Routes>
-
-
     </Container>
   )
 }

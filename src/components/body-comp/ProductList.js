@@ -7,7 +7,7 @@ export default function ProductList() {
 
     let params = useParams();
     let productListText = "";
-    console.log(params);
+    // console.log(params);
 
     if (params.consoleType != null) {
         productListText = "Console tpye is " + params.consoleType;
