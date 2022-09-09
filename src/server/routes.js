@@ -1,9 +1,9 @@
 const express = require("express");
-const userModel = require("./models");
-const productModel = require("./models");
-const app = express();
+const router = express.Router();
+const userModel = require("../models/userModel");
+const productModel = require("../models/productModel");
 
-app.post("/add_user", async (request, response) => {
+router.post("/add_user", async (request, response) => {
     const user = new userModel(request.body);
 
     try {
@@ -14,7 +14,7 @@ app.post("/add_user", async (request, response) => {
     }
 });
 
-app.get("/users", async (request, response) => {
+router.get("/users", async (request, response) => {
     const users = await userModel.find({});
 
     try {
@@ -24,7 +24,7 @@ app.get("/users", async (request, response) => {
     }
 });
 
-app.post("/add_product", async (request, response) => {
+router.post("/add_product", async (request, response) => {
     const product = new productModel(request.body);
 
     try {
@@ -35,15 +35,24 @@ app.post("/add_product", async (request, response) => {
     }
 });
 
-app.get("/products", async (request, response) => {
-    const products = await productModel.find({});
+router.get("/products", async (request, response) => {
+    // const products = await productModel.find({});
 
-    try {
-        response.send(products);
-        console.log(products);
-    } catch (error) {
-        response.status(500).send(error);
-    }
+    // try {
+    //     response.send(products);
+    //     console.log(products);
+    // } catch (error) {
+    //     response.status(500).send(error);
+    // }
+
+    productModel.find({}).then((data) => {
+        console.log("Data: ", data);
+        response.json(data);
+    }).catch((error) => {
+        console.log("error", error);
+    });
+
+    // response.json(data);
 });
 
-module.exports = app;
+module.exports = router;
