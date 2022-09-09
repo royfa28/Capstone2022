@@ -14,18 +14,15 @@ app.post("/add_user", async (request, response) => {
     }
 });
 
-function getAllUsers() {
-    app.get("/users", async (request, response) => {
-        const users = await userModel.find({});
+app.get("/users", async (request, response) => {
+    const users = await userModel.find({});
 
-        try {
-            response.send(users);
-        } catch (error) {
-            response.status(500).send(error);
-        }
-    });
-}
-
+    try {
+        response.send(users);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
 
 app.post("/add_product", async (request, response) => {
     const product = new productModel(request.body);
@@ -49,4 +46,4 @@ app.get("/products", async (request, response) => {
     }
 });
 
-module.exports ={ app, getAllUsers};
+module.exports = app;
