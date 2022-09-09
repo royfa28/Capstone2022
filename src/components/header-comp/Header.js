@@ -41,7 +41,7 @@ export default function Header() {
                         {/* <!-- If not logged in, will show register/login if not will show account --> */}
                         <div className="col-1">
                             {loggedIn ?
-                                <Link to="/Account-Details">
+                                <Link to="/Account_Page">
                                     <Button variant="primary">
                                         Account
                                     </Button>

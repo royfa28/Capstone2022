@@ -5,9 +5,9 @@ import Container from 'react-bootstrap/esm/Container';
 import Header from './components/header-comp/Header';
 import Homepage from './components/homepage-comp/Homepage';
 import ProductList from './components/body-comp/ProductList';
-import AccountDetails from './components/account-comp/AccountDetails';
-import ProductDetails from './components/body-comp/ProductDetails';
-import ProductData from "./local-database/allProducts.json";
+import AccountPage from './components/account-comp/AccountPage';
+import ProductPage from './components/body-comp/ProductPage';
+import AccDetailsPage from "./components/account-comp/AccountDetailsPage"
 
 const App = () => {
 
@@ -18,8 +18,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/Product-List/:consoleType" element={<ProductList />} />
-        <Route path="/Account-Details" element={<AccountDetails />} />
-        <Route path="/ProductDetails/:productID" element={<ProductDetails />} />
+        <Route path="/Account_Page" element={<AccountPage />} >
+          <Route path="AccDetailsPage/:userID" element={<AccDetailsPage />} />
+        </Route>
+        <Route path="/ProductPage/:productID" element={<ProductPage />} />
       </Routes>
     </Container>
   )
