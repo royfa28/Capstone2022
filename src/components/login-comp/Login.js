@@ -9,7 +9,7 @@ import './login.css';
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { setModal, register, loginStatus, registerStatus } = useMyLoginContext();
+    const { setModal, register, loginStatus, registerStatus, addAccount } = useMyLoginContext();
 
     function changeState() {
         registerStatus();
@@ -24,6 +24,20 @@ export default function LoginModal(props) {
         setModal();
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const userAccount = {
+            fullname: formData.get("fullname"),
+            email: formData.get("email"),
+            password: formData.get("password"),
+            phone: formData.get("phone"),
+            orderHistory: {},
+            address: "",
+        }
+        addAccount(userAccount);
+    }
+
     return (
 
         <Modal {...props} centered >
@@ -34,17 +48,11 @@ export default function LoginModal(props) {
             </Modal.Header>
 
             <Modal.Body >
-                <Form className="modal-container">
-                    {/* If Register is true show content below if not null */}
-                    {register ?
-                        <Form.Group className="mb-3" controlId="formBasicEmail" id="fullname">
-                            <Form.Label>Full name</Form.Label>
-                            <Form.Control type="email" placeholder="Enter full name" />
-                        </Form.Group> : null}
+                <Form className="modal-container" onSubmit={(e) => handleSubmit(e)}>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" name="email" />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -52,21 +60,34 @@ export default function LoginModal(props) {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" placeholder="Password" name="password" />
                     </Form.Group>
 
+                    {/* If Register is true show content below if not null */}
+                    {register ?
+                        <Form.Group className="mb-3" controlId="basic-addon2" id="fullname">
+                            <Form.Label>Full name</Form.Label>
+                            <Form.Control placeholder="Enter full name" name="fullname" />
+                        </Form.Group> : null}
+
+                    {register ?
+                        <Form.Group className="mb-3" controlId="formBasicPhone">
+                            <Form.Label>Phone Number</Form.Label>
+                            <Form.Control type="phoneNumber" placeholder="Phone Number" name="phone" />
+                        </Form.Group> : null}
+
                     <Form.Label onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
+
+                    <Form.Group>
+                        <Button variant="secondary" onClick={changeModal}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={checkLogin} type='submit'>
+                            Save Changes
+                        </Button>
+                    </Form.Group>
                 </Form>
             </Modal.Body>
-
-            <Modal.Footer>
-                <Button variant="secondary" onClick={changeModal}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={checkLogin}>
-                    Save Changes
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
 }
