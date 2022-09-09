@@ -14,6 +14,7 @@ const App = () => {
   return (
     <Container fluid="lg">
       <Header />
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/Product-List/:consoleType" element={<ProductList />} />

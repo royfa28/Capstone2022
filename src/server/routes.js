@@ -1,5 +1,5 @@
 const express = require("express");
-const userModel  = require("./models");
+const userModel = require("./models");
 const productModel = require("./models");
 const app = express();
 
@@ -14,15 +14,18 @@ app.post("/add_user", async (request, response) => {
     }
 });
 
-app.get("/users", async (request, response) => {
-    const users = await userModel.find({});
+function getAllUsers() {
+    app.get("/users", async (request, response) => {
+        const users = await userModel.find({});
 
-    try {
-        response.send(users);
-    } catch (error) {
-        response.status(500).send(error);
-    }
-});
+        try {
+            response.send(users);
+        } catch (error) {
+            response.status(500).send(error);
+        }
+    });
+}
+
 
 app.post("/add_product", async (request, response) => {
     const product = new productModel(request.body);
@@ -46,4 +49,4 @@ app.get("/products", async (request, response) => {
     }
 });
 
-module.exports = app;
+module.exports ={ app, getAllUsers};
