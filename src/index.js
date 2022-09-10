@@ -6,18 +6,21 @@ import App from './App';
 import MyLoginContext from './context/loginContext';
 import MyAccountContext from "./context/accountContext";
 import MyShoppingCartContext from "./context/ShoppingCartContext";
+import MyProductsContext from './context/ProductsContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <MyShoppingCartContext>
-            <MyLoginContext>
-                <MyAccountContext>
-                    <App />
-                </MyAccountContext>
-            </MyLoginContext>
-        </MyShoppingCartContext>
+        <MyProductsContext>
+            <MyShoppingCartContext>
+                <MyLoginContext>
+                    <MyAccountContext>
+                        <App />
+                    </MyAccountContext>
+                </MyLoginContext>
+            </MyShoppingCartContext>
+        </MyProductsContext>
     </BrowserRouter>
 );

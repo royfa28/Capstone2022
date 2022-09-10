@@ -10,10 +10,6 @@ import AccountPage from './components/account-comp/AccountPage';
 import ProductPage from './components/body-comp/ProductPage';
 import AccDetailsPage from "./components/account-comp/AccountDetailsPage";
 
-
-// Temporary place to store data
-
-
 const App = () => {
   return (
     <Container fluid="lg">

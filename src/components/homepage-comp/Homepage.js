@@ -1,25 +1,19 @@
 import React from 'react';
 import ProductList from '../body-comp/ProductList';
 import PromotionBanner from './promotionBanner';
-import Axios from 'axios';
+import Button from "react-bootstrap/Button";
+
+import { useMyProductsContext } from "../../context/ProductsContext";
 
 export default function Homepage() {
 
-    const getAllProducts = () => {
-        Axios.get("/products")
-            .then((response) => {
-                const data = response.data;
-                console.log(data);
-                console.log("Data has been retrieved");
-            }).catch(() => {
-                console.log("Internal server error");
-            })
-    }
-
+    // Use my context provider
+    const { getAllProducts } = useMyProductsContext();
+    getAllProducts();
     return (
         <div>
             <PromotionBanner />
-            {getAllProducts()}
+            <Button ></Button>
             <ProductList />
         </div>
     )

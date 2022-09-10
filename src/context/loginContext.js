@@ -10,7 +10,6 @@ function LoginContext(props) {
     const [register, setRegister] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [account, setAccount] = useState([]);
-    const [products, setProducts] = useState([]);
 
     const setModal = () => {
         setModalShow(!modalShow);
@@ -40,20 +39,9 @@ function LoginContext(props) {
         });
     };
 
-    const viewProducts = async() => {
-        await Axios({
-            url: "/products",
-            method: 'GET',
-        }).then((response) => {
-            setProducts(response.data);
-        }).catch(() => {
-            console.log("Internal server error");
-        });
-    }
-
     const Values = {
-        modalShow, register, loggedIn, account, products,
-        loginStatus, registerStatus, setModal, addAccount, viewProducts
+        modalShow, register, loggedIn, account,
+        loginStatus, registerStatus, setModal, addAccount
     }
 
     return (
