@@ -1,36 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProductBanner from "./ProductBanner";
 import { useParams } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 
 import { useMyProductsContext } from "../../context/ProductsContext";
 
 export default function ProductPage() {
 
-    let params = useParams();
-    console.log(params);
+    let id = useParams();
+    console.log(id.productID);
 
-    const { products } = useMyProductsContext();
-    console.log(products);
+    const { singleProduct, getSingleProduct } = useMyProductsContext();
 
-    // console.log("Product Name " + ProductData[Index].productTitle);
+    useEffect(() => {
+        getSingleProduct(id.productID);
+        const interval = setInterval(() => {
+            getSingleProduct(id.productID);
+        }, 1000 * 60);
+
+        return () => clearInterval(interval);
+    }, []);
+    console.log(singleProduct);
+
     return (
         <div>
             <Row>
-                <Col>
-                    <ProductBanner />
-                </Col>
+                <Col><ProductBanner /></Col>
             </Row>
 
-            <Row>
-                {products.productTitle}
-            </Row>
-            
+            <Row> {singleProduct.productTitle} </Row>
+
             <Row>
                 <Col md={8} xs={12}>
                     <Card>
@@ -48,7 +51,7 @@ export default function ProductPage() {
 
                         <Card.Body>
                             <Card.Text>
-                                {products.productDescription}
+                                {singleProduct.productDescription}
                             </Card.Text>
                         </Card.Body>
                     </Card>
