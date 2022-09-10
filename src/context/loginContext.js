@@ -30,7 +30,7 @@ function LoginContext(props) {
         console.log(account);
 
         Axios({
-            url: 'http://localhost:8080/add_user',
+            url: 'add_user',
             method: 'POST',
             data: account
         }).then(() => {
