@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ProductList from '../body-comp/ProductList';
 import PromotionBanner from './promotionBanner';
 import Button from "react-bootstrap/Button";
@@ -17,7 +17,7 @@ export default function Homepage() {
         }, 1000 * 60);
 
         return () => clearInterval(interval);
-    }, []);
+    },[]);
 
     return (
         <div>

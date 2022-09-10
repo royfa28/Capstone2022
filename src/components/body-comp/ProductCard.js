@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import Spiderman from '../../assets/Product Image/Spiderman.jpg';
-import ProductData from "../../local-database/allProducts.json";
 import { useMyProductsContext } from "../../context/ProductsContext";
 import "./ProductCard.css";
 
