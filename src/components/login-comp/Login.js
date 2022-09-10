@@ -1,7 +1,8 @@
 import Button from 'react-bootstrap/Button';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Axios from "axios";
 
 import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
@@ -9,7 +10,7 @@ import './login.css';
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { setModal, register, loginStatus, registerStatus, addAccount } = useMyLoginContext();
+    const { setModal, register, loginStatus, registerStatus, addAccount} = useMyLoginContext();
 
     function changeState() {
         registerStatus();
@@ -28,18 +29,19 @@ export default function LoginModal(props) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const userAccount = {
-            fullname: formData.get("fullname"),
-            email: formData.get("email"),
+            fullName: formData.get("fullname"),
+            emailAddress: formData.get("email"),
             password: formData.get("password"),
-            phone: formData.get("phone"),
+            phoneNumber: formData.get("phone"),
             orderHistory: {},
             address: "",
         }
         addAccount(userAccount);
+        // viewProducts();
     }
 
     return (
-
+        
         <Modal {...props} centered >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -50,7 +52,7 @@ export default function LoginModal(props) {
             <Modal.Body >
                 <Form className="modal-container" onSubmit={(e) => handleSubmit(e)}>
 
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formControlsEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" name="email" />
                         <Form.Text className="text-muted">
@@ -82,11 +84,12 @@ export default function LoginModal(props) {
                         <Button variant="secondary" onClick={changeModal}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={checkLogin} type='submit'>
+                        <Button variant="primary" type='submit'>
                             Save Changes
                         </Button>
                     </Form.Group>
                 </Form>
+
             </Modal.Body>
         </Modal>
     );
