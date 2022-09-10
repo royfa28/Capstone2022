@@ -36,7 +36,6 @@ export default function LoginModal(props) {
             address: "",
         }
         addAccount(userAccount);
-        // viewProducts();
     }
 
     return (

@@ -33,7 +33,7 @@ router.get("/users", async (request, response) => {
 // Find users based on email can be used for validating
 router.get("/user/:email", async (request, response) => {
     console.log(request.params.email);
-    
+
     userModel.find({ emailAddress: request.params.email }).then((data) => {
         console.log("Data: ", data);
         response.json(data);
@@ -54,16 +54,22 @@ router.post("/add_product", async (request, response) => {
 });
 
 router.get("/products", async (request, response) => {
-    // const products = await productModel.find({});
-
-    // try {
-    //     response.send(products);
-    //     console.log(products);
-    // } catch (error) {
-    //     response.status(500).send(error);
-    // }
 
     productModel.find({}).then((data) => {
+        console.log("Data: ", data);
+        response.json(data);
+    }).catch((error) => {
+        console.log("error", error);
+    });
+
+    // response.json(data);
+});
+
+router.get("/products/:id", async (request, response) => {
+    var id = request.params.id;
+    console.log(id);
+    
+    productModel.findById(id).then((data) => {
         console.log("Data: ", data);
         response.json(data);
     }).catch((error) => {

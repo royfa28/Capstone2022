@@ -25,7 +25,7 @@ export default function ProductCard() {
                     <Col>
                         <Card className="Product-Card h-100">
 
-                            <Link to={"/ProductPage/" + data.productID} >
+                            <Link to={"/ProductPage/" + data._id} >
                                 {/* Game picture */}
                                 <Card.Img variant="top" src={Spiderman} />
 

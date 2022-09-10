@@ -8,12 +8,15 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 
-import ProductData from "../../local-database/allProducts.json";
+import { useMyProductsContext } from "../../context/ProductsContext";
 
 export default function ProductPage() {
 
     let params = useParams();
-    let Index = params.productID - 1;
+    console.log(params);
+
+    const { products } = useMyProductsContext();
+    console.log(products);
 
     // console.log("Product Name " + ProductData[Index].productTitle);
     return (
@@ -25,7 +28,7 @@ export default function ProductPage() {
             </Row>
 
             <Row>
-                {ProductData[Index].productTitle}
+                {products.productTitle}
             </Row>
             
             <Row>
@@ -45,7 +48,7 @@ export default function ProductPage() {
 
                         <Card.Body>
                             <Card.Text>
-                                {ProductData[Index].productDescription}
+                                {products.productDescription}
                             </Card.Text>
                         </Card.Body>
                     </Card>

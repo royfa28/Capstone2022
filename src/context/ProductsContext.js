@@ -18,6 +18,16 @@ function ProductsContext(props) {
             })
     }
 
+    const getSingleProduct = async(id) => {
+        await Axios.get("/products/" + id)
+            .then((response) => {
+                setProducts(response.data);
+                console.log(products);
+            }).catch(() => {
+                console.log("Internal server error");
+            })
+    }
+
     const Values = {
         products,
         getAllProducts,
