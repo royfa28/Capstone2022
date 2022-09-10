@@ -7,6 +7,7 @@ export const useMyProductsContext = () => useContext(productsCxt);
 function ProductsContext(props) {
 
     const [products, setProducts] = useState([]);
+    const [singleProduct, setSingleProduct] = useState([]);
 
     const getAllProducts = async() => {
         await Axios.get("/products")
@@ -21,16 +22,16 @@ function ProductsContext(props) {
     const getSingleProduct = async(id) => {
         await Axios.get("/products/" + id)
             .then((response) => {
-                setProducts(response.data);
-                console.log(products);
+                setSingleProduct(response.data);
+                console.log(singleProduct);
             }).catch(() => {
                 console.log("Internal server error");
             })
     }
 
     const Values = {
-        products,
-        getAllProducts,
+        products, singleProduct,
+        getAllProducts, getSingleProduct
     }
 
     return (
