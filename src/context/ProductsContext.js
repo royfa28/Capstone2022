@@ -11,9 +11,8 @@ function ProductsContext(props) {
     const getAllProducts = async() => {
         await Axios.get("/products")
             .then((response) => {
-                const data = response.data;
-                console.log(data);
-                console.log("Data has been retrieved");
+                setProducts(response.data);
+                console.log(products);
             }).catch(() => {
                 console.log("Internal server error");
             })

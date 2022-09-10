@@ -4,16 +4,7 @@ const userModel = require("../models/userModel");
 const productModel = require("../models/productModel");
 
 router.post("/add_user", async (request, response) => {
-    // const user = new userModel(request.body);
-
-    // try {
-    //     await user.save();
-    //     response.send(user);
-    // } catch (error) {
-    //     response.status(500).send(error);
-    // }
-
-    console.log("Body: ", request.body);
+    // console.log("Body: ", request.body);
     const userData = request.body;
 
     // Create new class to hold the user model
@@ -37,6 +28,18 @@ router.get("/users", async (request, response) => {
     } catch (error) {
         response.status(500).send(error);
     }
+});
+
+// Find users based on email can be used for validating
+router.get("/user/:email", async (request, response) => {
+    console.log(request.params.email);
+    
+    userModel.find({ emailAddress: request.params.email }).then((data) => {
+        console.log("Data: ", data);
+        response.json(data);
+    }).catch((error) => {
+        console.log("error", error);
+    });
 });
 
 router.post("/add_product", async (request, response) => {

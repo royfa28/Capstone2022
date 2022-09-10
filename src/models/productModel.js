@@ -8,6 +8,10 @@ const ProductSchema = new mongoose.Schema({
     productPrice: {
         type: Number,
         required: true,
+    },
+    productDescription: {
+        type: String,
+        required: true,
     }
 });
 

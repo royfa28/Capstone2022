@@ -7,9 +7,13 @@ import { Link } from 'react-router-dom';
 
 import Spiderman from '../../assets/Product Image/Spiderman.jpg';
 import ProductData from "../../local-database/allProducts.json";
+import { useMyProductsContext } from "../../context/ProductsContext";
 import "./ProductCard.css";
 
 export default function ProductCard() {
+
+    const { products } = useMyProductsContext();
+    console.log(products);
 
     const quantity = 1;
     
@@ -17,7 +21,7 @@ export default function ProductCard() {
 
     return (
         <Row xs={1} md={4} xl={6} lg={5} className="g-4">
-            {ProductData.map((data, key) => {
+            {products.map((data, key) => {
                 return (
                     <Col>
                         <Card className="Product-Card h-100">

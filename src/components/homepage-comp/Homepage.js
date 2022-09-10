@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductList from '../body-comp/ProductList';
 import PromotionBanner from './promotionBanner';
 import Button from "react-bootstrap/Button";
@@ -9,12 +9,22 @@ export default function Homepage() {
 
     // Use my context provider
     const { getAllProducts } = useMyProductsContext();
-    getAllProducts();
+
+    useEffect(() => {
+        getAllProducts();
+        const interval = setInterval(() => {
+            getAllProducts();
+        }, 1000 * 60);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <div>
             <PromotionBanner />
-            <Button ></Button>
+            <Button >Button</Button>
             <ProductList />
         </div>
     )
+
 }
