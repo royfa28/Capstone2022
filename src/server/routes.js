@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const userModel = require("../models/userModel");
+const { User } = require("../models/userModel");
 const productModel = require("../models/productModel");
 
 router.post("/add_user", async (request, response) => {
@@ -8,7 +8,7 @@ router.post("/add_user", async (request, response) => {
     const userData = request.body;
 
     // Create new class to hold the user model
-    const newUser = new userModel(userData);
+    const newUser = new User(userData);
 
     // Save it
     newUser.save((error) => {
@@ -21,7 +21,7 @@ router.post("/add_user", async (request, response) => {
 });
 
 router.get("/users", async (request, response) => {
-    const users = await userModel.find({});
+    const users = await User.find({});
 
     try {
         response.send(users);
@@ -34,7 +34,7 @@ router.get("/users", async (request, response) => {
 router.get("/user/:email", async (request, response) => {
     console.log(request.params.email);
 
-    userModel.find({ emailAddress: request.params.email }).then((data) => {
+    User.find({ emailAddress: request.params.email }).then((data) => {
         console.log("Data: ", data);
         response.json(data);
     }).catch((error) => {

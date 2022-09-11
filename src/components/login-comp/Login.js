@@ -1,15 +1,14 @@
-import Button from 'react-bootstrap/Button';
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import { Form, Button, Modal } from 'react-bootstrap';
 
 import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
+import axios from 'axios';
 
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { setModal, register, loginStatus, registerStatus, addAccount} = useMyLoginContext();
+    const { setModal, register, loginStatus, registerStatus, addAccount } = useMyLoginContext();
 
     function changeState() {
         registerStatus();
@@ -24,22 +23,38 @@ export default function LoginModal(props) {
         setModal();
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const userAccount = {
-            fullName: formData.get("fullname"),
+            // fullName: formData.get("fullname"),
             emailAddress: formData.get("email"),
             password: formData.get("password"),
-            phoneNumber: formData.get("phone"),
-            orderHistory: {},
-            address: "",
+            // phoneNumber: formData.get("phone"),
+            // orderHistory: {},
+            // address: "",
         }
-        addAccount(userAccount);
+        // addAccount(userAccount);
+
+        try {
+            const url = "api/auth";
+            console.log(userAccount);
+            const { userAccount: res } = await axios.post(url, userAccount);
+
+            // localStorage.setItem(res.userAccount);
+            window.location = "/";
+            console.log(res.message);
+        } catch (error) {
+            if (
+                error.response & error.response.status >= 400 && error.response.status <= 500
+            ) {
+                console.log("error.response.userAccount.message");
+            }
+        }
     }
 
     return (
-        
+
         <Modal {...props} centered >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -52,7 +67,7 @@ export default function LoginModal(props) {
 
                     <Form.Group className="mb-3" controlId="formControlsEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" name="email" />
+                        <Form.Control type="email" placeholder="Enter email" name="email" required />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -60,7 +75,7 @@ export default function LoginModal(props) {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" name="password" />
+                        <Form.Control type="password" placeholder="Password" name="password" required />
                     </Form.Group>
 
                     {/* If Register is true show content below if not null */}

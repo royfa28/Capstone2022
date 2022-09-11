@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Col, Row, Button, Container } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 
 import "./OrderCard.css"
 

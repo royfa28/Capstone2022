@@ -12,6 +12,14 @@ const ProductSchema = new mongoose.Schema({
     productDescription: {
         type: String,
         required: true,
+    },
+    productGenre: {
+        type: String,
+        required: true,
+    },
+    productPlatform: {
+        type: String,
+        required: true,
     }
 });
 

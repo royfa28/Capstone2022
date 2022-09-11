@@ -13,7 +13,7 @@ import OrderHistoryPage from './components/account-comp/OrderHistoryPage';
 
 const App = () => {
     return (
-        <Container fluid="lg">
+        <Container fluid>
             <Header />
             <Routes>
                 <Route path="/" element={<Homepage />} />

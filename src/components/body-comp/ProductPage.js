@@ -12,7 +12,6 @@ import { useMyProductsContext } from "../../context/ProductsContext";
 export default function ProductPage() {
 
     let id = useParams();
-    console.log(id.productID);
 
     const { singleProduct, getSingleProduct } = useMyProductsContext();
 
@@ -23,7 +22,7 @@ export default function ProductPage() {
         }, 1000 * 60);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [id.productID]);
     console.log(singleProduct);
 
     return (
@@ -61,8 +60,8 @@ export default function ProductPage() {
                 <Col md={4} xs={12}>
                     <Card>
                         <Card.Body>
-                            <p>Genre:</p>
-                            <p>Platform:</p>
+                            <p>Genre: {singleProduct.productGenre}</p>
+                            <p>Platform: {singleProduct.productPlatform}</p>
                         </Card.Body>
 
                         <Card.Footer>

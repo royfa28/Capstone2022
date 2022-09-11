@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Router = require("./src/server/routes")
+const Router = require("./src/server/routes");
+const authRoutes = require("./src/routes/auth");
+const userRoutes = require("./src/routes/users");
 const cors = require("cors");
 
 const app = express();
@@ -33,7 +35,13 @@ app.use(express.urlencoded({ extended: false }));
 // });
 
 app.use(cors());
+
+
+// Routes
 app.use("/", Router);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);
