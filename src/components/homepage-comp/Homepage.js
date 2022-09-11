@@ -17,7 +17,7 @@ export default function Homepage() {
         }, 1000 * 60);
 
         return () => clearInterval(interval);
-    },[]);
+    }, []);
 
     return (
         <div>

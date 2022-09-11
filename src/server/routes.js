@@ -68,7 +68,7 @@ router.get("/products", async (request, response) => {
 router.get("/products/:id", async (request, response) => {
     var id = request.params.id;
     console.log(id);
-    
+
     productModel.findById(id).then((data) => {
         console.log("Data: ", data);
         response.json(data);
