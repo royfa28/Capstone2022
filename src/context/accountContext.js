@@ -4,14 +4,21 @@ const accountCxt = createContext();
 export const useMyAccountContext = () => useContext(accountCxt);
 
 function AccountContext(props) {
-    const [accountNav, setAccountNav] = useState(false);
+    const [changePersonalDetails, setChangePersonalDetails] = useState(false);
+    const [changeContactDetails, setChangeContactDetails] = useState(false);
 
-    const setNav =() =>{
-        setAccountNav(!accountNav);
+    const setPersonalDetails = {
+
     }
 
+    const setContactDetails = {
+        
+    }
+    const Values = {
+
+    }
     return (
-        <accountCxt.Provider value={{ accountNav, setNav }}>
+        <accountCxt.Provider value={Values}>
             {props.children}
         </accountCxt.Provider>
     );

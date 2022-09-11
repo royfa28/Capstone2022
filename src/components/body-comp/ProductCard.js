@@ -1,8 +1,5 @@
 import React from 'react'
-import Card from "react-bootstrap/Card";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
+import { Card, Col, Row, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
 import Spiderman from '../../assets/Product Image/Spiderman.jpg';

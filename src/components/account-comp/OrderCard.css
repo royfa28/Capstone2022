@@ -1,0 +1,15 @@
+.order-history-card {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 10px;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
+}
+
+h4{
+    font-size: 18px;
+    margin: 0;
+}

@@ -23,7 +23,7 @@ export default function AccountPage() {
 
     return (
         <>
-            <Tabs defaultActiveKey="Account Details" id="justify-tab-example" className="mb-3" justify="true">
+            <Tabs defaultActiveKey="Account Details" id="justify-tab-example" className="mb-3 mt-3" justify="true">
                 <Tab eventKey="Account Details" title="Account Details">
                     <AccDetailsPage />
                 </Tab>
