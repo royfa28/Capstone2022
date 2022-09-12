@@ -3,20 +3,15 @@ import { Form, Button, Modal } from 'react-bootstrap';
 
 import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
-import axios from 'axios';
+import Axios from 'axios';
 
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { setModal, register, loginStatus, registerStatus, addAccount } = useMyLoginContext();
+    const { setModal, register, registerStatus, addAccount, loginAuth, error } = useMyLoginContext();
 
     function changeState() {
         registerStatus();
-    }
-
-    function checkLogin() {
-        loginStatus();
-        setModal();
     }
 
     function changeModal() {
@@ -34,23 +29,7 @@ export default function LoginModal(props) {
             // orderHistory: {},
             // address: "",
         }
-        // addAccount(userAccount);
-
-        try {
-            const url = "api/auth";
-            console.log(userAccount);
-            const { userAccount: res } = await axios.post(url, userAccount);
-
-            // localStorage.setItem(res.userAccount);
-            window.location = "/";
-            console.log(res.message);
-        } catch (error) {
-            if (
-                error.response & error.response.status >= 400 && error.response.status <= 500
-            ) {
-                console.log("error.response.userAccount.message");
-            }
-        }
+        loginAuth(userAccount);
     }
 
     return (
@@ -84,7 +63,7 @@ export default function LoginModal(props) {
                             <Form.Label>Full name</Form.Label>
                             <Form.Control placeholder="Enter full name" name="fullname" />
                         </Form.Group> : null}
-
+                    {error && <div>{error}</div>}
                     {register ?
                         <Form.Group className="mb-3" controlId="formBasicPhone">
                             <Form.Label>Phone Number</Form.Label>
@@ -94,6 +73,7 @@ export default function LoginModal(props) {
                     <Form.Label onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
 
                     <Form.Group>
+
                         <Button variant="secondary" onClick={changeModal}>
                             Close
                         </Button>

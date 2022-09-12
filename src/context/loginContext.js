@@ -10,6 +10,7 @@ function LoginContext(props) {
     const [register, setRegister] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
     const [account, setAccount] = useState([]);
+    const [error, setError] = useState("");
 
     const setModal = () => {
         setModalShow(!modalShow);
@@ -32,16 +33,37 @@ function LoginContext(props) {
             url: 'add_user',
             method: 'POST',
             data: account
-        }).then(() => {
+        }).then((response) => {
+
             console.log("Data has been sent to server" + account);
         }).catch(() => {
             console.log("Internal server error");
         });
     };
 
+    const loginAuth = (userAccount) => {
+        Axios({
+            url: 'api/auth',
+            method: 'POST',
+            data: userAccount
+        }).then((response) => {
+            console.log("Token" + response.data.accessToken);
+            console.log("Data has been sent to server" + userAccount);
+            loginStatus();
+            setModal();
+        }).catch((error) => {
+            if (
+                error.response && error.response.status >= 400 && error.response.status <= 500
+            ) {
+                setError(error.response.data.message);
+            }
+            console.log("Internal server error");
+        });
+    }
+
     const Values = {
-        modalShow, register, loggedIn, account,
-        loginStatus, registerStatus, setModal, addAccount
+        modalShow, register, loggedIn, account, error,
+        loginStatus, registerStatus, setModal, addAccount, loginAuth
     }
 
     return (

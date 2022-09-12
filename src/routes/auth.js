@@ -9,15 +9,15 @@ router.post("/", async (request, response) => {
         if (error)
             return response.status(400).send({ message: error.details[0].message });
 
-
         const user = await User.findOne({ emailAddress: request.body.emailAddress });
         if (!user)
             return response.status(401).send({ message: "Invalid Email or Password" });
         if (request.body.password === user.password) {
-            console.log("Working");
             
             response.status(200).send({ message: "Logged in successfull" });
-            console.log("Working");
+            console.log("Login successful");
+            // const token = user.generateAuthToken();
+            // console.log(token);
         }
 
         return response.status(401).send({ message: "Invalid email or password" });
