@@ -45,10 +45,13 @@ function LoginContext(props) {
         Axios({
             url: 'api/auth',
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             data: userAccount
         }).then((response) => {
-            console.log("Token" + response.data.accessToken);
-            console.log("Data has been sent to server" + userAccount);
+            console.log("Access token is " + response.data.accessToken);
+            localStorage.setItem('token', response.data.accessToken)
             loginStatus();
             setModal();
         }).catch((error) => {

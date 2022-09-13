@@ -1,9 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
 const Router = require("./src/server/routes");
 const authRoutes = require("./src/routes/auth");
 const userRoutes = require("./src/routes/users");
-const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 8080
@@ -25,6 +27,7 @@ mongoose.connection.on("connected", () => {
     console.log("Mongoose is connected");
 });
 
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

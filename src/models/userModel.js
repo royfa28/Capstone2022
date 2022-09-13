@@ -4,6 +4,7 @@ const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
 const UserSchema = new mongoose.Schema({
+
     fullName: {
         type: String,
         required: true,
@@ -11,6 +12,7 @@ const UserSchema = new mongoose.Schema({
     emailAddress: {
         type: String,
         required: true,
+        unique: true,
     }, orderHistory: {
     },
     password: {
@@ -24,15 +26,16 @@ const UserSchema = new mongoose.Schema({
     phoneNumber: {
         type: Number,
         required: true,
-    },
-});
+    }
+}, { collection: "users" }
+);
 
-UserSchema.methods.generateAuthToken = function () {
-    console.log("This a token");
-    const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "7d" });
-    console.log(token);
-    return token;
-}
+// UserSchema.methods.generateAuthToken = function () {
+//     console.log("This a token");
+//     const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "7d" });
+//     console.log(token);
+//     return token;
+// }
 
 const User = mongoose.model("User", UserSchema);
 

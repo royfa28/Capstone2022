@@ -20,15 +20,16 @@ router.post("/add_user", async (request, response) => {
     })
 });
 
-router.get("/users", async (request, response) => {
-    const users = await User.find({});
+// Find all users
+// router.get("/users", async (request, response) => {
+//     const users = await User.find({});
 
-    try {
-        response.send(users);
-    } catch (error) {
-        response.status(500).send(error);
-    }
-});
+//     try {
+//         response.send(users);
+//     } catch (error) {
+//         response.status(500).send(error);
+//     }
+// });
 
 // Find users based on email can be used for validating
 router.get("/user/:email", async (request, response) => {
@@ -65,6 +66,7 @@ router.get("/products", async (request, response) => {
     // response.json(data);
 });
 
+// Find products by ID -> On Click
 router.get("/products/:id", async (request, response) => {
     var id = request.params.id;
     console.log(id);
