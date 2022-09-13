@@ -19,6 +19,7 @@ router.post("/", async (request, response) => {
                 _id: user._id,
                 emailAddress: user.emailAddress
             }, JWT_SECRET );
+            // const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "7d" });
             console.log(token);
             // response.status(200).send({ message: "Logged in successfull" });
             console.log("Login successful");

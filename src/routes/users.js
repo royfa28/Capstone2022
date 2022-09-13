@@ -1,16 +1,16 @@
-const express = require("express");
-const router = express.Router();
-const { User, validate } = require("../models/userModel");
+const router = require("express").Router();
+const Joi = require("joi");
+const passwordComplexity = require("joi-password-complexity");
+const { User } = require("../models/userModel");
 
-router.post("/add_user", async (request, response) => {
+router.post("/", async (request, response) => {
     // console.log("Body: ", request.body);
     const userData = request.body;
 
-    // Create new class to hold the user model
-    const newUser = new User(userData);
-
     try {
+        console.log(request.body);
         const { error } = validate(request.body);
+        console.log("try");
         if (error)
             return response.status(400).send({ message: error.details[0].message });
 
@@ -21,8 +21,18 @@ router.post("/add_user", async (request, response) => {
         await new User({ ...request.body }).save();
         response.status(201).send({ message: "User created successfully" });
     } catch (error) {
-        response.status(500).send({ message: "Internal server error" });
+        response.status(500).send({ message: "Internal server error =cccc" });
     }
 });
+
+const validate = (data) => {
+    const schema = Joi.object({
+        fullName: Joi.string().required().label("Full Name"),
+        emailAddress: Joi.string().email().required().label("Email"),
+        password: passwordComplexity().required().label("Password"),
+        phoneNumber: Joi.string().required().label("Phone Number"),
+    });
+    return schema.validate(data);
+}
 
 module.exports = router;

@@ -3,7 +3,6 @@ import { Form, Button, Modal } from 'react-bootstrap';
 
 import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
-import Axios from 'axios';
 
 export default function LoginModal(props) {
 
@@ -21,19 +20,27 @@ export default function LoginModal(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const userAccount = {
-            // fullName: formData.get("fullname"),
-            emailAddress: formData.get("email"),
-            password: formData.get("password"),
-            // phoneNumber: formData.get("phone"),
-            // orderHistory: {},
-            // address: "",
+        if (!register) {
+            const userAccount = {
+                emailAddress: formData.get("email"),
+                password: formData.get("password"),
+            }
+            loginAuth(userAccount);
+        } else {
+            console.log("Register");
+            const userAccount = {
+                fullName: formData.get("fullname"),
+                emailAddress: formData.get("email"),
+                password: formData.get("password"),
+                phoneNumber: formData.get("phone"),
+                // orderHistory: [],
+                // address: null,
+            }
+            addAccount(userAccount);
         }
-        loginAuth(userAccount);
     }
 
     return (
-
         <Modal {...props} centered >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -63,22 +70,20 @@ export default function LoginModal(props) {
                             <Form.Label>Full name</Form.Label>
                             <Form.Control placeholder="Enter full name" name="fullname" />
                         </Form.Group> : null}
-                    {error && <div>{error}</div>}
                     {register ?
                         <Form.Group className="mb-3" controlId="formBasicPhone">
                             <Form.Label>Phone Number</Form.Label>
                             <Form.Control type="phoneNumber" placeholder="Phone Number" name="phone" />
                         </Form.Group> : null}
-
+                    {error && <div>{error}</div>}
                     <Form.Label onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
-
                     <Form.Group>
 
                         <Button variant="secondary" onClick={changeModal}>
                             Close
                         </Button>
                         <Button variant="primary" type='submit'>
-                            Save Changes
+                            {register ? "Register" : "Login"}
                         </Button>
                     </Form.Group>
                 </Form>

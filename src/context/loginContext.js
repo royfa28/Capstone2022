@@ -17,26 +17,33 @@ function LoginContext(props) {
     };
 
     const registerStatus = () => {
-        // console.log("Register status " + register);
         setRegister(!register);
+        setError("");
     };
 
     const loginStatus = () => {
         setLoggedIn(!loggedIn);
-        // console.log("Login status " + loggedIn);
     };
 
     const addAccount = (account) => {
         console.log(account);
 
         Axios({
-            url: 'add_user',
+            url: 'api/addUser',
             method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
             data: account
         }).then((response) => {
-
+            registerStatus();
             console.log("Data has been sent to server" + account);
-        }).catch(() => {
+        }).catch((error) => {
+            if (
+                error.response && error.response.status >= 400 && error.response.status <= 500
+            ) {
+                setError(error.response.data.message);
+            }
             console.log("Internal server error");
         });
     };

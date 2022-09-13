@@ -3,22 +3,22 @@ const router = express.Router();
 const { User } = require("../models/userModel");
 const productModel = require("../models/productModel");
 
-router.post("/add_user", async (request, response) => {
-    // console.log("Body: ", request.body);
-    const userData = request.body;
+// router.post("/add_user", async (request, response) => {
+//     // console.log("Body: ", request.body);
+//     const userData = request.body;
 
-    // Create new class to hold the user model
-    const newUser = new User(userData);
+//     // Create new class to hold the user model
+//     const newUser = new User(userData);
 
-    // Save it
-    newUser.save((error) => {
-        if (error) {
-            response.status(500).json({ msg: "Sorry internal server error" });
-        } else {
-            response.json({ msg: "We receive your package" });
-        }
-    })
-});
+//     // Save it
+//     newUser.save((error) => {
+//         if (error) {
+//             response.status(500).json({ msg: "Sorry internal server error" });
+//         } else {
+//             response.json({ msg: "We receive your package" });
+//         }
+//     })
+// });
 
 // Find all users
 // router.get("/users", async (request, response) => {
