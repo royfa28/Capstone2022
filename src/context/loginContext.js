@@ -9,7 +9,7 @@ function LoginContext(props) {
     const [modalShow, setModalShow] = useState(false);
     const [register, setRegister] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
-    const [account, setAccount] = useState([]);
+    // const [account, setAccount] = useState([]);
     const [error, setError] = useState("");
 
     const setModal = () => {
@@ -72,7 +72,7 @@ function LoginContext(props) {
     }
 
     const Values = {
-        modalShow, register, loggedIn, account, error,
+        modalShow, register, loggedIn, error,
         loginStatus, registerStatus, setModal, addAccount, loginAuth
     }
 

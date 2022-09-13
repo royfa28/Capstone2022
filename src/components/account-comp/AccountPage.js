@@ -1,25 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from "react-bootstrap/Tabs";
+import { Tab, Tabs, Button } from 'react-bootstrap';
+import JWTDecode from "jwt-decode";
 
 import AccDetailsPage from "./AccountDetailsPage";
 import AccOrderHistoryPage from './AccOrderHistoryPage';
 
-// import { useMyAccountContext } from "../../context/accountContext";
-import { useMyLoginContext } from '../../context/loginContext';
-import { Button } from 'react-bootstrap';
+import { useMyAccountContext } from "../../context/accountContext";
 
 export default function AccountPage() {
 
-    const { loginStatus } = useMyLoginContext();
-
-    function checkLogin() {
+    // const { loginStatus } = useMyLoginContext();
+    function logout() {
         console.log("Logout");
-        loginStatus();
+        localStorage.removeItem("token");
+        window.location.reload();
+        // loginStatus();
     }
+    const decodedToken = JWTDecode(localStorage.getItem("token"));
+    const { viewAccount } = useMyAccountContext();
 
-    // const { accountNav, setAccountNav } = useMyAccountContext();
+    useEffect(() => {
+        viewAccount(decodedToken._id);
+        const interval = setInterval(() => {
+            viewAccount(decodedToken._id);
+        }, 1000 * 3600);
+
+        return () => clearInterval(interval);
+    }, []);
+
 
     return (
         <>
@@ -35,8 +44,8 @@ export default function AccountPage() {
 
                 </Tab>
 
-                <Tab eventKey="Logout" title="Logout" onSelect={checkLogin}>
-                    <Button onClick={checkLogin} variant="danger"> <Link to="/"> LOGOUT </Link></Button>
+                <Tab eventKey="Logout" title="Logout">
+                    <Button onClick={logout} variant="danger"> <Link to="/"> LOGOUT </Link></Button>
                 </Tab>
             </Tabs>
         </>

@@ -4,8 +4,6 @@ const passwordComplexity = require("joi-password-complexity");
 const { User } = require("../models/userModel");
 
 router.post("/", async (request, response) => {
-    // console.log("Body: ", request.body);
-    const userData = request.body;
 
     try {
         console.log(request.body);

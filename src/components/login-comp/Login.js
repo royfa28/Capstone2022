@@ -47,7 +47,7 @@ export default function LoginModal(props) {
                     {register ? "Register" : "Login"}
                 </Modal.Title>
             </Modal.Header>
-
+            
             <Modal.Body >
                 <Form className="modal-container" onSubmit={(e) => handleSubmit(e)}>
 

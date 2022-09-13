@@ -38,7 +38,8 @@ export default function Header() {
 
                         {/* <!-- If not logged in, will show register/login if not will show account --> */}
                         <Col className="col-1 order-last ">
-                            {loggedIn ?
+                            {/* If token for account is there, show account otherwise Login */}
+                            {localStorage.getItem("token") ?
                                 <Link to="/Account_Page">
                                     <Button variant="primary">
                                         Account
@@ -58,11 +59,8 @@ export default function Header() {
                         </Col>
                     </Row>
                 </Container>
-
             </header>
-
             <NavBar />
-
         </>
 
 
