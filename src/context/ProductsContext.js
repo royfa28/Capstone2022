@@ -13,7 +13,6 @@ function ProductsContext(props) {
         await Axios.get("/products")
             .then((response) => {
                 setProducts(response.data);
-                console.log(products);
             }).catch(() => {
                 console.log("Internal server error");
             })

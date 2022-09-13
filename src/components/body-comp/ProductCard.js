@@ -4,18 +4,30 @@ import { Link } from 'react-router-dom';
 
 import Spiderman from '../../assets/Product Image/Spiderman.jpg';
 import { useMyProductsContext } from "../../context/ProductsContext";
+import { useMyCartContext } from '../../context/ShoppingCartContext';
 import "./ProductCard.css";
 
 export default function ProductCard() {
 
     const { products } = useMyProductsContext();
-    console.log(products);
+    const { addItems, itemQuantity, shoppingCart, setShoppingCart } = useMyCartContext();
 
-    const quantity = 1;
+    const quantity = 0;
 
+    function addToCart(product) {
+        addItems(product);
+    }
     return (
+
         <Row xs={1} md={4} xl={6} lg={5} className="g-4">
             {products.map((data, key) => {
+                const item = {
+                    _id: data._id,
+                    qty: 1,
+                    productPrice: data.productPrice,
+                    productTitle: data.productTitle,
+                }
+                // {console.log(item)}
                 return (
                     <Col>
                         <Card className="Product-Card h-100">
@@ -34,7 +46,7 @@ export default function ProductCard() {
 
                             <Card.Footer className="mt-auto" style={{ padding: "0px" }}>
                                 {quantity === 0 ? (
-                                    <Button className="w-100">Add to cart</Button>
+                                    <Button className="w-100" onClick={() => addToCart(item)}>Add to cart</Button>
                                 ) :
                                     <div className="d-flex align-items-center flex-column" style={{ gap: ".5rem" }}>
                                         <div className="d-flex align-items-center justify-content-center" style={{ gap: ".5rem" }}>
