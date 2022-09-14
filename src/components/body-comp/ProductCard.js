@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Card, Col, Row, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
@@ -10,28 +10,31 @@ import "./ProductCard.css";
 export default function ProductCard() {
 
     const { products } = useMyProductsContext();
-    const { addItems, itemQuantity, shoppingCart, setShoppingCart } = useMyCartContext();
+    const { addItems, shoppingCart, increment, decrement, removeItem } = useMyCartContext();
 
-    const quantity = 0;
-
+    let cartIndex;
     function addToCart(product) {
         addItems(product);
     }
-    return (
 
+    function getIndex(_id) {
+        cartIndex = shoppingCart.findIndex(e => e._id === _id);
+    }
+
+    return (
         <Row xs={1} md={4} xl={6} lg={5} className="g-4">
-            {products.map((data, key) => {
+            {products.map((data, index) => {
                 const item = {
                     _id: data._id,
-                    qty: 1,
                     productPrice: data.productPrice,
                     productTitle: data.productTitle,
                 }
+                getIndex(data._id)
                 // {console.log(item)}
                 return (
-                    <Col>
+                    <Col key={index}>
+                        {console.log(shoppingCart)}
                         <Card className="Product-Card h-100">
-
                             <Link to={"/ProductPage/" + data._id} >
                                 {/* Game picture */}
                                 <Card.Img variant="top" src={Spiderman} />
@@ -43,20 +46,22 @@ export default function ProductCard() {
                                     </Card.Title>
                                 </Card.Body>
                             </Link>
-
                             <Card.Footer className="mt-auto" style={{ padding: "0px" }}>
-                                {quantity === 0 ? (
+
+                                {/* If shopping cart not initialized will show as true, and render first option */}
+                                {shoppingCart[cartIndex] === undefined ? (
                                     <Button className="w-100" onClick={() => addToCart(item)}>Add to cart</Button>
                                 ) :
                                     <div className="d-flex align-items-center flex-column" style={{ gap: ".5rem" }}>
                                         <div className="d-flex align-items-center justify-content-center" style={{ gap: ".5rem" }}>
-                                            <Button size="sm"> - </Button>
-                                            <div> <span className="fs-5">{quantity}</span> in cart</div>
-                                            <Button size="sm"> + </Button>
+                                            <Button size="sm" onClick={() => decrement(shoppingCart[cartIndex])}> - </Button>
+                                            <div> <span className="fs-5">{shoppingCart[cartIndex].qty}</span> in cart</div>
+                                            <Button size="sm" onClick={() => increment(shoppingCart[cartIndex])}> + </Button>
                                         </div>
 
-                                        <Button variant="danger" size="sm"> Remove </Button>
-                                    </div>}
+                                        <Button variant="danger" size="sm" onClick={() => removeItem(shoppingCart[cartIndex])}> Remove </Button>
+                                    </div>
+                                }
                             </Card.Footer>
 
                         </Card>

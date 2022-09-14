@@ -5,8 +5,6 @@ const ShoppingCartCxt = createContext({});
 export const useMyCartContext = () => useContext(ShoppingCartCxt);
 
 function ShoppingCartContext(props) {
-
-    const [itemQuantity, setItemQuantity] = useState(0);
     const [shoppingCart, setShoppingCart] = useState([]);
 
     const addItems = (product) => {
@@ -18,19 +16,38 @@ function ShoppingCartContext(props) {
             setShoppingCart([
                 ...shoppingCart,
                 { ...product, qty: 1 }]);
-            
-        } else {
-            setShoppingCart(shoppingCart.map(x =>
-                x._id === product._id ?
-                    { ...exist, qty: exist.qty + 1 } : x))
-            console.log("Shopping Cart");
-            console.log(shoppingCart);
+
         }
     }
 
+    const increment = (product) => {
+        if (product.qty >= 5) {
+            alert("Can only put 5 items max");
+        } else {
+            setShoppingCart(shoppingCart.map(x =>
+                x._id === product._id ? { ...product, qty: product.qty + 1 } : x))
+        }
+    }
+
+    const decrement = (product) => {
+        if (product.qty <= 1) {
+            removeItem(product);
+        } else {
+            setShoppingCart(shoppingCart.map(x =>
+                x._id === product._id ?
+                    { ...product, qty: product.qty - 1 } : x))
+        }
+    }
+
+    const removeItem = (product) => {
+        setShoppingCart(shoppingCart.filter(cart => {
+            return cart._id !== product._id;
+        }))
+    }
+
     const Values = {
-        itemQuantity, shoppingCart,
-        addItems, setShoppingCart
+        shoppingCart,
+        addItems, setShoppingCart, increment, decrement, removeItem
     }
     return (
         <ShoppingCartCxt.Provider value={Values}>
