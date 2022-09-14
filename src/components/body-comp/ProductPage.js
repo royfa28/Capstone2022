@@ -22,7 +22,7 @@ export default function ProductPage() {
         }, 1000 * 60);
 
         return () => clearInterval(interval);
-    }, [id.productID]);
+    }, []);
     console.log(singleProduct);
 
     return (
