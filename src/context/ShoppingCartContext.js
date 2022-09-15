@@ -6,17 +6,17 @@ export const useMyCartContext = () => useContext(ShoppingCartCxt);
 
 function ShoppingCartContext(props) {
     const [shoppingCart, setShoppingCart] = useState([]);
+    const [totalPrice, setTotalPrice] = useState();
 
     const addItems = (product) => {
 
         const exist = shoppingCart.find(x => x._id === product._id);
         if (!exist) {
-
-            // Somehow need to click the button twice for it to load
-            setShoppingCart([
-                ...shoppingCart,
-                { ...product, qty: 1 }]);
-
+            setShoppingCart([...shoppingCart, {
+                ...product,
+                qty: 1,
+                subTotal: parseFloat(product.productPrice)
+            }]);
         }
     }
 
@@ -25,7 +25,11 @@ function ShoppingCartContext(props) {
             alert("Can only put 5 items max");
         } else {
             setShoppingCart(shoppingCart.map(x =>
-                x._id === product._id ? { ...product, qty: product.qty + 1 } : x))
+                x._id === product._id ? {
+                    ...product,
+                    qty: product.qty + 1,
+                    subTotal: parseFloat((product.qty + 1) * product.productPrice)
+                } : x))
         }
     }
 
@@ -34,8 +38,11 @@ function ShoppingCartContext(props) {
             removeItem(product);
         } else {
             setShoppingCart(shoppingCart.map(x =>
-                x._id === product._id ?
-                    { ...product, qty: product.qty - 1 } : x))
+                x._id === product._id ? {
+                    ...product,
+                    qty: product.qty - 1,
+                    subTotal: parseFloat((product.qty - 1) * product.productPrice)
+                } : x))
         }
     }
 
@@ -46,8 +53,8 @@ function ShoppingCartContext(props) {
     }
 
     const Values = {
-        shoppingCart,
-        addItems, setShoppingCart, increment, decrement, removeItem
+        shoppingCart, totalPrice,
+        addItems, setShoppingCart, increment, decrement, removeItem, setTotalPrice
     }
     return (
         <ShoppingCartCxt.Provider value={Values}>
