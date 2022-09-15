@@ -55,7 +55,10 @@ export default function Header() {
 
                         <Col className="col-1 order-last">
                             {/* Import cart logo locally */}
-                            <img src={cartLogo} alt='Shopping cart' />
+                            <Link to="Shopping_Cart">
+                                <img src={cartLogo} alt='Shopping cart' />
+                            </Link>
+
                         </Col>
                     </Row>
                 </Container>

@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import './promotionBanner.css';
 import Banner1 from '../../assets/Banners/Banner1.png';
+import { Container } from 'react-bootstrap';
 
 function PromotionBanner() {
 
@@ -13,26 +14,28 @@ function PromotionBanner() {
     };
 
     return (
-        <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-banner'>
-            <Carousel.Item>
-                <img className="d-block w-100" src={Banner1} alt="First slide" />
+        <div className="container-lg">
+            <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-banner'>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={Banner1} alt="First slide" />
 
-                {/* No caption needed for now
+                    {/* No caption needed for now
                 <Carousel.Caption>
                     <h3>First slide label</h3>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </Carousel.Caption> */}
-            </Carousel.Item>
+                </Carousel.Item>
 
-            <Carousel.Item>
-                <img className="d-block w-100" src={Banner1} alt="Second slide" />
-            </Carousel.Item>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={Banner1} alt="Second slide" />
+                </Carousel.Item>
 
-            <Carousel.Item>
-                <img className="d-block w-100" src={Banner1} alt="Third slide" />
-            </Carousel.Item>
+                <Carousel.Item>
+                    <img className="d-block w-100" src={Banner1} alt="Third slide" />
+                </Carousel.Item>
 
-        </Carousel>
+            </Carousel>
+        </div>
     )
 }
 

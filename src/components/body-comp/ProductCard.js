@@ -21,17 +21,19 @@ export default function ProductCard() {
         return shoppingCart.findIndex(e => e._id === _id);
     }
 
+    // Get shopping cart into useState if there is local storage
     useEffect(() => {
         const cart = localStorage.getItem("Cart");
         if (cart !== null) setShoppingCart(JSON.parse(cart));
     }, []);
 
+    // Save to local storage everytime shoppingcart array change
     useEffect(() => {
         localStorage.setItem("Cart", JSON.stringify(shoppingCart));
 
         // Get total price by looping through the data
         shoppingCart.map(cart => {
-            countTotal += parseFloat(cart.subTotal * cart.qty);
+            countTotal =+ parseFloat(cart.subTotal + countTotal);
             // cart.subTotal = cart.qty * cart.productPrice;
         })
         setTotalPrice(countTotal);
@@ -45,6 +47,7 @@ export default function ProductCard() {
                     _id: data._id,
                     productPrice: data.productPrice,
                     productTitle: data.productTitle,
+                    productPlatform: data.productPlatform,
                 }
 
                 return (

@@ -22,7 +22,7 @@ export default function Homepage() {
     return (
         <div>
             <PromotionBanner />
-            <Button >Button</Button>
+
             <ProductList />
         </div>
     )
