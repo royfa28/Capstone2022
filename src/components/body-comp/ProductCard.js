@@ -10,7 +10,7 @@ import "./ProductCard.css";
 export default function ProductCard() {
 
     const { products } = useMyProductsContext();
-    const { addItems, shoppingCart, increment, decrement, removeItem, totalPrice, setShoppingCart, setTotalPrice } = useMyCartContext();
+    const { addItems, shoppingCart, increment, decrement, removeItem, setShoppingCart, setTotalPrice } = useMyCartContext();
 
     let countTotal = 0;
     function addToCart(product) {

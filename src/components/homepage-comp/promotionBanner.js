@@ -3,7 +3,6 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import './promotionBanner.css';
 import Banner1 from '../../assets/Banners/Banner1.png';
-import { Container } from 'react-bootstrap';
 
 function PromotionBanner() {
 

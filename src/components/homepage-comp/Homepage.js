@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import ProductList from '../body-comp/ProductList';
 import PromotionBanner from './promotionBanner';
-import Button from "react-bootstrap/Button";
 
 import { useMyProductsContext } from "../../context/ProductsContext";
 
