@@ -7,6 +7,7 @@ import MyLoginContext from './context/loginContext';
 import MyAccountContext from "./context/accountContext";
 import MyShoppingCartContext from "./context/ShoppingCartContext";
 import MyProductsContext from './context/ProductsContext';
+import MyOrderContext from "./context/OrderContext";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,7 +18,9 @@ root.render(
             <MyShoppingCartContext>
                 <MyLoginContext>
                     <MyAccountContext>
-                        <App />
+                        <MyOrderContext>
+                            <App />
+                        </MyOrderContext>
                     </MyAccountContext>
                 </MyLoginContext>
             </MyShoppingCartContext>

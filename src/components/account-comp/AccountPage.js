@@ -10,7 +10,6 @@ import { useMyAccountContext } from "../../context/accountContext";
 
 export default function AccountPage() {
 
-    // const { loginStatus } = useMyLoginContext();
     function logout() {
         console.log("Logout");
         localStorage.removeItem("token");

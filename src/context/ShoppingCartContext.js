@@ -9,7 +9,6 @@ function ShoppingCartContext(props) {
     const [totalPrice, setTotalPrice] = useState();
 
     const addItems = (product) => {
-
         const exist = shoppingCart.find(x => x._id === product._id);
         if (!exist) {
             setShoppingCart([...shoppingCart, {
@@ -56,6 +55,7 @@ function ShoppingCartContext(props) {
         shoppingCart, totalPrice,
         addItems, setShoppingCart, increment, decrement, removeItem, setTotalPrice
     }
+
     return (
         <ShoppingCartCxt.Provider value={Values}>
             {props.children}
