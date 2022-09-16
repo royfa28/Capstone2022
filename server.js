@@ -47,7 +47,7 @@ app.use("/", Router);
 app.use("/api/auth", authRoutes);
 app.use("/api/addUser", userRoutes);
 app.use("/api/updateUser/:account", updateUserRoutes);
-app.use("/api/addOrder/:order", addOrder);
+app.use("/api", addOrder);
 
 
 app.listen(PORT, () => {

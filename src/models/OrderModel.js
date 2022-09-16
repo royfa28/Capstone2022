@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const OrderDetailsSchema = new mongoose.Schema({
     productID: { type: String },
     productPrice: { type: Number },
+    qty: { type: Number }
 });
 
 const ShoppingCartSchema = new mongoose.Schema({

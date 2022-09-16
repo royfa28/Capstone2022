@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import moment from "moment";
 import Axios from "axios";
 
@@ -7,6 +7,8 @@ const OrderCxt = createContext({});
 export const useMyOrderContext = () => useContext(OrderCxt);
 
 function OrderContext(props) {
+
+    const [orderHistory, setOrderHistory] = useState([]);
 
     const createOrder = (account, product, totalPrice) => {
         var date = moment(new Date()).format('MMMM Do YYYY');
@@ -17,10 +19,10 @@ function OrderContext(props) {
             orderDetail.push({
                 productID: item._id,
                 productPrice: item.productPrice,
+                qty: item.qty,
             });
         })
-        orderData =
-        {
+        orderData = {
             emailAddress: account.emailAddress,
             orderDate: date,
             totalPrice: totalPrice,
@@ -37,14 +39,33 @@ function OrderContext(props) {
             data: orderData,
         }).then((response) => {
             // console.log("Success");
+            localStorage.removeItem("Cart");
             console.log(response.data);
+
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    const viewOrders = async (email) => {
+        Axios({
+            url: `api/allOrders/${email}`,
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then((response) => {
+            // console.log("Success");
+            console.log(response.data);
+            setOrderHistory(response.data);
         }).catch((error) => {
             console.log(error);
         });
     }
 
     const Values = {
-        createOrder
+        orderHistory,
+        createOrder, viewOrders
     }
     return (
         <OrderCxt.Provider value={Values}>

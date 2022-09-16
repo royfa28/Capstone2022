@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const { ShoppingCart } = require("../models/OrderModel");
 
-router.post("/", async (request, response) => {
-
+router.post("/addOrder/:order", async (request, response) => {
     try {
-        // console.log(request.body.orderDetails);
-        // console.log(request.body);
-
         await new ShoppingCart({
             emailAddress: request.body.emailAddress,
             orderDate: request.body.orderDate,
@@ -17,7 +13,17 @@ router.post("/", async (request, response) => {
     } catch (error) {
         response.status(500).send({ message: error });
     }
+});
 
+router.get("/allOrders/:email", async (request, response) => {
+    // console.log(request.params);
+    ShoppingCart.find({ emailAddress: request.params.email })
+        .then((data) => {
+            // console.log(data);
+            response.json(data);
+        }).catch((error) => {
+            console.log("error", error);
+        });
 })
 
 module.exports = router;

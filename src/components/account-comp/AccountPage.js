@@ -28,7 +28,6 @@ export default function AccountPage() {
         return () => clearInterval(interval);
     }, []);
 
-
     return (
         <>
             <Tabs defaultActiveKey="Account Details" id="justify-tab-example" className="mb-3 mt-3" justify="true">
