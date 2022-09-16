@@ -9,17 +9,25 @@ function AccountContext(props) {
     const [changeContactDetails, setChangeContactDetails] = useState(false);
     const [accountDetails, setAccountDetails] = useState([]);
 
-    const setPersonalDetails = {
-
-    }
-
-    const setContactDetails = {
-
+    const updateAccount = (account) => {
+        console.log(account);
+        Axios({
+            url: `api/updateUser/${account}`,
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: account,
+        }).then((response) => {
+            console.log(response.data);
+            window.location.reload(false);
+            setAccountDetails(response.data);
+        }).catch((error) => {
+            console.log("Internal server error");
+        })
     }
 
     const viewAccount = (id) => {
-        console.log(id);
-
         Axios({
             url: `Account_Page/${id}`,
             method: 'GET',
@@ -29,15 +37,15 @@ function AccountContext(props) {
         }).then((response) => {
             // Set the accountDetails with the response taken from the GET
             setAccountDetails(response.data);
-            console.log("Data has been sent to server" + id);
+            // console.log(response.data);
         }).catch((error) => {
             console.log("Internal server error");
         });
     }
 
     const Values = {
-        accountDetails,
-        viewAccount,
+        accountDetails, changePersonalDetails, changeContactDetails,
+        viewAccount, setChangePersonalDetails, setChangeContactDetails, updateAccount
     }
     return (
         <accountCxt.Provider value={Values}>

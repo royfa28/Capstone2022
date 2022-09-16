@@ -36,7 +36,7 @@ export default function ProductCard() {
             countTotal =+ parseFloat(cart.subTotal + countTotal);
             // cart.subTotal = cart.qty * cart.productPrice;
         })
-        setTotalPrice(countTotal);
+        setTotalPrice(parseFloat(countTotal).toFixed(2));
     }, [shoppingCart]);
 
     return (

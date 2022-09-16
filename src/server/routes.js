@@ -20,13 +20,11 @@ router.get("/Account_Page/:id", async (request, response) => {
     console.log(id);
 
     User.findById(id).then((data) => {
-        console.log("Data: ", data);
+        // console.log("Data: ", data);
         response.json(data);
     }).catch((error) => {
         console.log("error", error);
     });
-
-    // response.json(data);
 });
 
 // const showTodos = async (id) => {

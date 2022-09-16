@@ -6,6 +6,7 @@ const cors = require("cors");
 const Router = require("./src/server/routes");
 const authRoutes = require("./src/routes/auth");
 const userRoutes = require("./src/routes/users");
+const updateUserRoutes = require("./src/routes/updateUser");
 
 const app = express();
 const PORT = process.env.PORT || 8080
@@ -44,6 +45,7 @@ app.use(cors());
 app.use("/", Router);
 app.use("/api/auth", authRoutes);
 app.use("/api/addUser", userRoutes);
+app.use("/api/updateUser/:account", updateUserRoutes);
 
 
 app.listen(PORT, () => {

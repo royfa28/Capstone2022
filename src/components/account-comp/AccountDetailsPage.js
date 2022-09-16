@@ -1,43 +1,99 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useMyAccountContext } from "../../context/accountContext";
 
 export default function AccountDetailsPage() {
 
-    const { accountDetails } = useMyAccountContext();
+    const { accountDetails, changePersonalDetails, changeContactDetails,
+        setChangePersonalDetails, setChangeContactDetails, updateAccount } = useMyAccountContext();
+
+    const fullNameRef = useRef(null);
+    const phoneNumberRef = useRef(null);
+
+    function saveFullName() {
+        const newName = fullNameRef.current.value
+        console.log("Full name is: ", newName);
+        updateAccount({ ...accountDetails, phoneNumber: newName });
+        fullNameRef.current.value = "";
+    }
+
+    function savePhoneNumber() {
+        const newPhone = phoneNumberRef.current.value
+        console.log("Phone number is: ", newPhone);
+        updateAccount({ ...accountDetails, phoneNumber: newPhone });
+        phoneNumberRef.current.value = "";
+    }
 
     return (
         <>
             <Container fluid>
                 <Row>
+                    {/* {console.log(accountDetails)} */}
                     <h3>Personal Details</h3>
                     <Row className="justify-content-between mb-2">
-                        <Col>{accountDetails.fullName}</Col>
+                        <Col><h5>{accountDetails.fullName}</h5></Col>
                         <Col className="col-1">
-                            <Button>Edit</Button>
+                            {(!changePersonalDetails) ?
+                                <Button onClick={() => setChangePersonalDetails(true)}>Edit</Button>
+                                : null}
                         </Col>
                     </Row>
+                    {(!changePersonalDetails) ? null :
+                        <>
+                            <Row>
+                                <label>New full name</label>
+                                <input
+                                    ref={fullNameRef} type="text" id="fullName" name="fullName"
+                                ></input>
+                            </Row>
+                            <Row className="justify-content-center">
+                                <Col className="col-2"><Button onClick={() => saveFullName()}>Save</Button></Col>
+                                <Col className="col-2">
+                                    <Button onClick={() => setChangePersonalDetails(false)}>Cancel</Button>
+                                </Col>
+                            </Row>
+                        </>
+                    }
                 </Row>
 
                 <Row>
                     <h3>Contact Details</h3>
                     <Row className="justify-content-between mb-2">
                         <Col>{accountDetails.emailAddress}</Col>
-                        <Col className="col-1">
-                            <Button>Edit</Button>
-                        </Col>
                     </Row>
                     <Row className="justify-content-between  mb-2">
                         <Col>{accountDetails.phoneNumber}</Col>
                         <Col className="col-1">
-                            <Button>Edit</Button>
+                            {(!changeContactDetails) ?
+                                <Button onClick={() => setChangeContactDetails(true)}>Edit</Button> : null}
                         </Col>
                     </Row>
+
+                    {(!changeContactDetails) ? null :
+                        <>
+                            <Row>
+                                <label>New Phone Number</label>
+                                <input
+                                    ref={phoneNumberRef} type="text" id="phoneNumber" name="phoneNumber"
+                                ></input>
+                            </Row>
+                            <Row className="justify-content-center">
+                                <Col className="col-2"><Button onClick={() => savePhoneNumber()}>Save</Button></Col>
+                                <Col className="col-2">
+                                    <Button onClick={() => setChangeContactDetails(false)}>Cancel</Button>
+                                </Col>
+                            </Row>
+                        </>
+                    }
                 </Row>
 
                 <Row>
-                    <h3>Delivery Address</h3>
-                    <Row className="justify-content-between  mb-2">
+                    <Row className="justify-content-between mb-2">
+                        <Col><h3>Delivery Address</h3></Col>
+                        <Col className="col-1"><Button>Add</Button></Col>
+                    </Row>
+
+                    <Row className="justify-content-between mb-2">
                         <Col>{accountDetails.address}</Col>
                         <Col className="col-1">
                             <Button>Edit</Button>

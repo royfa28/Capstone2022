@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Col, Row, Button, Container } from "react-bootstrap";
+import { Col, Row, Button, Container } from "react-bootstrap";
 
 import { useMyCartContext } from '../../context/ShoppingCartContext';
 
@@ -8,15 +8,21 @@ export default function ShoppingCart() {
     const { shoppingCart, increment, decrement, removeItem, totalPrice, setShoppingCart, setTotalPrice } = useMyCartContext();
     let countTotal = 0;
 
+    // Get shopping cart into useState if there is local storage
+    useEffect(() => {
+        const cart = localStorage.getItem("Cart");
+        if (cart !== null) setShoppingCart(JSON.parse(cart));
+    }, []);
+
     useEffect(() => {
         localStorage.setItem("Cart", JSON.stringify(shoppingCart));
 
         // Get total price by looping through the data
         shoppingCart.map(cart => {
-            countTotal = + parseFloat(cart.subTotal + countTotal);
+            countTotal = parseFloat(cart.subTotal + countTotal);
             // cart.subTotal = cart.qty * cart.productPrice;
         })
-        setTotalPrice(countTotal);
+        setTotalPrice(parseFloat(countTotal).toFixed(2));
     }, [shoppingCart]);
 
     return (
@@ -24,7 +30,7 @@ export default function ShoppingCart() {
             <Container fluid>
                 {shoppingCart.map((data, key) => {
                     return (
-                        <Row className="mt-3">
+                        <Row className="mt-3" key={key}>
                             <Col className="col-2">
                                 <img src="https://picsum.photos/100/150"></img>
                             </Col>
@@ -48,7 +54,7 @@ export default function ShoppingCart() {
                                     Price: {data.productPrice}
                                 </Row>
                                 <Row>
-                                    <Button>Remove</Button>
+                                    <Button onClick={() => removeItem(shoppingCart[key])}>Remove</Button>
                                 </Row>
                             </Col>
                         </Row>
