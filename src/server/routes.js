@@ -53,7 +53,7 @@ router.post("/add_product", async (request, response) => {
 router.get("/products", async (request, response) => {
 
     productModel.find({}).then((data) => {
-        console.log("Data: ", data);
+        // console.log("Data: ", data);
         response.json(data);
     }).catch((error) => {
         console.log("error", error);

@@ -40,7 +40,7 @@ export default function ProductCard() {
     }, [shoppingCart]);
 
     return (
-        <Row xs={1} md={4} xl={6} lg={5} className="g-4">
+        <Row sm={3} md={4} xl={6} lg={5} className="g-4">
             {/* {console.log(shoppingCart)} */}
             {products.map((data, index) => {
                 const item = {

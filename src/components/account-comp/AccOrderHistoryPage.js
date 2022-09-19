@@ -28,6 +28,9 @@ export default function AccOrderHistoryPage() {
                     return (
                         <Link to={"/Account_Page/Order_History/" + data} key={index}>
                             <Row className="order-history-card mb-4" >
+                                <Row className="justify-content-center">
+                                    Order ID: #{data.orderID}
+                                </Row>
                                 <Row className="justify-content-between">
                                     <Col>
                                         <p>Order Date:</p>

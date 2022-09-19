@@ -102,7 +102,9 @@ export default function ShoppingCart() {
                         </Col>
                     </Row>
                     <Row className="justify-content-center">
-                        <Button className="checkout-button" onClick={() => checkout(shoppingCart)}>Checkout</Button>
+                        {shoppingCart.length === 0 ? (<Button disabled className="checkout-button" onClick={() => checkout(shoppingCart)}>disabled</Button>)
+                            : <Button className="checkout-button" onClick={() => checkout(shoppingCart)}>Checkout</Button>}
+
                     </Row>
                 </Row>
             </Container >
