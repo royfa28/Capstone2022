@@ -13,7 +13,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 export default function Header() {
 
     // Use my context provider to handle Modal show / Hide
-    const { setModal, modalShow, loggedIn } = useMyLoginContext();
+    const { setModal, modalShow } = useMyLoginContext();
 
     function changeModal() {
         setModal();
@@ -22,8 +22,8 @@ export default function Header() {
     return (
         <>
             <header>
-                <Container fluid>
-                    <Row className="justify-content-between">
+                <Container>
+                    <Row className="justify-content-between header-row">
                         {/* <!-- Logo --> */}
                         <Col className="col-2">
                             <h3><Link to="/">Games2Sell</Link></h3>
@@ -63,7 +63,9 @@ export default function Header() {
                     </Row>
                 </Container>
             </header>
-            <NavBar />
+
+            {/* Remove navbar for now */}
+            {/* <NavBar /> */}
         </>
 
 

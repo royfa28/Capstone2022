@@ -52,60 +52,64 @@ export default function ShoppingCart() {
 
     return (
         <>
-            <Container fluid>
+            <Container className="lg-fluid">
                 {/* Loop through Shoppingcart data and show in page */}
-                {shoppingCart.map((data, key) => {
-                    return (
-                        <Row className="mt-3" key={key}>
-                            <Col className="col-2">
-                                <img src="https://picsum.photos/100/150"></img>
-                            </Col>
-                            <Col>
-                                {/* Show product name and the platform */}
-                                <Row className="justify-content-center mb-3">
-                                    {data.productTitle} - {data.productPlatform}
-                                </Row>
 
-                                {/* Product Quantity add or decrease */}
-                                <Row>
+                <Row className="mt-3">
+                    <Col lg={8} md={12}>
+                        {shoppingCart.map((data, key) => {
+                            return (
+                                <Row key={key}>
+                                    <Col className="col-2">
+                                        <img src="https://picsum.photos/100/150" alt="product"></img>
+                                    </Col>
                                     <Col>
-                                        <div className="d-flex align-items-center justify-content-center" style={{ gap: ".5rem" }}>
-                                            <Button size="sm" onClick={() => decrement(shoppingCart[key])}> - </Button>
-                                            <div> <span className="fs-5">{shoppingCart[key].qty}</span></div>
-                                            <Button size="sm" onClick={() => increment(shoppingCart[key])}> + </Button>
-                                        </div>
+                                        {/* Show product name and the platform */}
+                                        <Row className="justify-content-center mb-3">
+                                            {data.productTitle} - {data.productPlatform}
+                                        </Row>
+
+                                        {/* Product Quantity add or decrease */}
+                                        <Row>
+                                            <Col>
+                                                <div className="d-flex align-items-center justify-content-center" style={{ gap: ".5rem" }}>
+                                                    <Button size="sm" onClick={() => decrement(shoppingCart[key])}> - </Button>
+                                                    <div> <span className="fs-5">{shoppingCart[key].qty}</span></div>
+                                                    <Button size="sm" onClick={() => increment(shoppingCart[key])}> + </Button>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+
+                                    {/* Show each individual price and remove button */}
+                                    <Col className="col-2">
+                                        <p>
+                                            Price: ${data.productPrice}
+                                        </p>
+                                        <Button onClick={() => removeItem(shoppingCart[key])}>Remove</Button>
+
                                     </Col>
                                 </Row>
-                            </Col>
+                            )
+                        })}
+                    </Col>
+                    <Col lg={4} md={12} className="shoppingCart-Col">
+                        <Row className="checkout-section">
+                            <Row className="justify-content-between">
+                                <Col>
+                                    Total price:
+                                </Col>
+                                <Col className="col-2">
+                                    ${totalPrice}
+                                </Col>
+                            </Row>
+                            <Row className="justify-content-center">
+                                {shoppingCart.length === 0 ? (<Button disabled className="checkout-button" onClick={() => checkout(shoppingCart)}>disabled</Button>)
+                                    : <Button className="checkout-button" onClick={() => checkout(shoppingCart)}>Checkout</Button>}
 
-                            {/* Show each individual price and remove button */}
-                            <Col className="col-2">
-                                <Row className="justify-content-center mb-3">
-                                    Price: {data.productPrice}
-                                </Row>
-                                <Row>
-                                    <Button onClick={() => removeItem(shoppingCart[key])}>Remove</Button>
-                                </Row>
-                            </Col>
+                            </Row>
                         </Row>
-
-                    )
-                })}
-
-                <Row className="checkout-section">
-                    <Row>
-                        <Col>
-                            Total price:
-                        </Col>
-                        <Col className="col-2">
-                            ${totalPrice}
-                        </Col>
-                    </Row>
-                    <Row className="justify-content-center">
-                        {shoppingCart.length === 0 ? (<Button disabled className="checkout-button" onClick={() => checkout(shoppingCart)}>disabled</Button>)
-                            : <Button className="checkout-button" onClick={() => checkout(shoppingCart)}>Checkout</Button>}
-
-                    </Row>
+                    </Col>
                 </Row>
             </Container >
         </>

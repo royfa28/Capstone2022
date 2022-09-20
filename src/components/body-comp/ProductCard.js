@@ -40,7 +40,7 @@ export default function ProductCard() {
     }, [shoppingCart]);
 
     return (
-        <Row sm={3} md={4} xl={6} lg={5} className="g-4">
+        <Row xs={3} sm={4} md={5} lg={6} xl={7}  className="g-4">
             {/* {console.log(shoppingCart)} */}
             {products.map((data, index) => {
                 const item = {
@@ -61,7 +61,7 @@ export default function ProductCard() {
                                 <Card.Body>
                                     <Card.Title className="align-items-baseline">
                                         <p>{data.productTitle}</p>
-                                        <p className="text-muted">{data.productPrice}</p>
+                                        <p className="text-muted">$ {data.productPrice}</p>
                                     </Card.Title>
                                 </Card.Body>
                             </Link>

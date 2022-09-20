@@ -8,6 +8,9 @@ import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 
 import { useMyProductsContext } from "../../context/ProductsContext";
+import { Container } from 'react-bootstrap';
+
+import "./ProductPage.css"
 
 export default function ProductPage() {
 
@@ -27,49 +30,52 @@ export default function ProductPage() {
 
     return (
         <div>
-            <Row>
-                <Col><ProductBanner /></Col>
-            </Row>
+            <Container>
+                <Row className="Product-Page">
+                    <Col md={8} xs={12}><ProductBanner /></Col>
 
-            <Row> {singleProduct.productTitle} </Row>
+                    <Col md={4} xs={12}>
+                        <Card>
+                            <Card.Body>
+                                <p>Genre: {singleProduct.productGenre}</p>
+                                <p>Platform: {singleProduct.productPlatform}</p>
+                            </Card.Body>
 
-            <Row>
-                <Col md={8} xs={12}>
-                    <Card>
-                        <Card.Header>
-                            <Nav justify="true" variant="tabs" defaultActiveKey="#first">
-                                <Nav.Item>
-                                    <Nav.Link href="#first">Product Details</Nav.Link>
-                                </Nav.Item>
+                            <Card.Footer>
+                                Add to cart
+                            </Card.Footer>
+                        </Card>
+                    </Col>
+                </Row>
 
-                                <Nav.Item>
-                                    <Nav.Link href="#second">Other Sellers</Nav.Link>
-                                </Nav.Item>
-                            </Nav>
-                        </Card.Header>
+                <Row> {singleProduct.productTitle} </Row>
 
-                        <Card.Body>
-                            <Card.Text>
-                                {singleProduct.productDescription}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
+                <Row>
+                    <Col md={8} xs={12}>
+                        <Card>
+                            <Card.Header>
+                                <Nav justify="true" variant="tabs" defaultActiveKey="#first">
+                                    <Nav.Item>
+                                        <Nav.Link href="#first">Product Details</Nav.Link>
+                                    </Nav.Item>
 
-                </Col>
+                                    <Nav.Item>
+                                        <Nav.Link href="#second">Other Sellers</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
+                            </Card.Header>
 
-                <Col md={4} xs={12}>
-                    <Card>
-                        <Card.Body>
-                            <p>Genre: {singleProduct.productGenre}</p>
-                            <p>Platform: {singleProduct.productPlatform}</p>
-                        </Card.Body>
+                            <Card.Body>
+                                <Card.Text>
+                                    {singleProduct.productDescription}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
 
-                        <Card.Footer>
-                            Add to cart
-                        </Card.Footer>
-                    </Card>
-                </Col>
-            </Row>
+                    </Col>
+                </Row>
+            </Container>
+
         </div>
     )
 }

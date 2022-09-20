@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { Tab, Tabs, Button } from 'react-bootstrap';
+import { Tab, Tabs, Button, Container } from 'react-bootstrap';
 import JWTDecode from "jwt-decode";
 
 import AccDetailsPage from "./AccountDetailsPage";
@@ -30,22 +30,24 @@ export default function AccountPage() {
 
     return (
         <>
-            <Tabs defaultActiveKey="Account Details" id="justify-tab-example" className="mb-3 mt-3" justify="true">
-                <Tab eventKey="Account Details" title="Account Details">
-                    <AccDetailsPage />
-                </Tab>
+            <Container>
+                <Tabs defaultActiveKey="Account Details" id="justify-tab-example" className="mb-3 mt-3" justify="true">
+                    <Tab eventKey="Account Details" title="Account Details">
+                        <AccDetailsPage />
+                    </Tab>
 
-                <Tab eventKey="Order History" title="Order History">
-                    <AccOrderHistoryPage />
-                </Tab>
-                <Tab eventKey="Products Listed" title="Products Listed">
+                    <Tab eventKey="Order History" title="Order History">
+                        <AccOrderHistoryPage />
+                    </Tab>
+                    <Tab eventKey="Products Listed" title="Products Listed">
 
-                </Tab>
+                    </Tab>
 
-                <Tab eventKey="Logout" title="Logout">
-                    <Button onClick={logout} variant="danger"> <Link to="/"> LOGOUT </Link></Button>
-                </Tab>
-            </Tabs>
+                    <Tab eventKey="Logout" title="Logout">
+                        <Button onClick={logout} variant="danger"> <Link to="/"> LOGOUT </Link></Button>
+                    </Tab>
+                </Tabs>
+            </Container>
         </>
 
     );

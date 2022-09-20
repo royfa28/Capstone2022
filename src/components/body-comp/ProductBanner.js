@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 
-import "./ProductBanner.css";
 import Banner1 from '../../assets/Banners/Banner1.png';
 
 export default function ProductBanner() {
