@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import ProductBanner from "./ProductBanner";
 import { useParams } from "react-router-dom";
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
+import { Row, Col, Card, Nav, Tab, Tabs } from 'react-bootstrap';
 
 import { useMyProductsContext } from "../../context/ProductsContext";
 import { Container } from 'react-bootstrap';
@@ -51,28 +48,15 @@ export default function ProductPage() {
                 <Row> {singleProduct.productTitle} </Row>
 
                 <Row>
-                    <Col md={8} xs={12}>
-                        <Card>
-                            <Card.Header>
-                                <Nav justify="true" variant="tabs" defaultActiveKey="#first">
-                                    <Nav.Item>
-                                        <Nav.Link href="#first">Product Details</Nav.Link>
-                                    </Nav.Item>
+                    <Tabs defaultActiveKey="Product Details" id="justify-tab-example" className="mb-3 mt-3" justify="true">
+                        <Tab eventKey="Product Details" title="Product Details">
+                            {singleProduct.productDescription}
+                        </Tab>
 
-                                    <Nav.Item>
-                                        <Nav.Link href="#second">Other Sellers</Nav.Link>
-                                    </Nav.Item>
-                                </Nav>
-                            </Card.Header>
-
-                            <Card.Body>
-                                <Card.Text>
-                                    {singleProduct.productDescription}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-
-                    </Col>
+                        <Tab eventKey="Other Seller" title="Other Seller">
+                            Other Seller
+                        </Tab>
+                    </Tabs>
                 </Row>
             </Container>
 
