@@ -9,16 +9,22 @@ function ProductsContext(props) {
     const [products, setProducts] = useState([]);
     const [singleProduct, setSingleProduct] = useState([]);
 
-    const getAllProducts = async() => {
-        await Axios.get("/products")
-            .then((response) => {
-                setProducts(response.data);
-            }).catch(() => {
-                console.log("Internal server error");
-            })
+    const getAllProducts = async () => {
+        Axios({
+            url: `/products`,
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((response) => {
+            setProducts(response.data);
+        }).catch(() => {
+            console.log("Internal server error");
+        })
+
     }
 
-    const getSingleProduct = async(id) => {
+    const getSingleProduct = async (id) => {
         await Axios.get("/products/" + id)
             .then((response) => {
                 setSingleProduct(response.data);

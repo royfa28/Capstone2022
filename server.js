@@ -3,11 +3,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const Router = require("./src/server/routes");
-const authRoutes = require("./src/routes/auth");
-const userRoutes = require("./src/routes/users");
-const updateUserRoutes = require("./src/routes/updateUser");
-const addOrder = require("./src/routes/orders");
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -40,6 +35,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 
+const Router = require("./src/server/routes");
+const authRoutes = require("./src/routes/auth");
+const userRoutes = require("./src/routes/users");
+const updateUserRoutes = require("./src/routes/updateUser");
+const addOrder = require("./src/routes/orders");
 // Routes
 app.use("/", Router);
 app.use("/api/auth", authRoutes);
