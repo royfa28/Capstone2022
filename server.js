@@ -8,17 +8,16 @@ const authRoutes = require("./src/routes/auth");
 const userRoutes = require("./src/routes/users");
 const updateUserRoutes = require("./src/routes/updateUser");
 const addOrder = require("./src/routes/orders");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080
-
-const username = "royfelix";
-const password = "Royfelix2802";
-const cluster = "games2sell.lmxutq1";
-const dbname = "MyDatabase";
+const PORT = process.env.PORT
+const { USER, PASSWORD, CLUSTERNAME, DBNAME } = process.env;
+console.log(USER, PASSWORD, CLUSTERNAME, DBNAME);
 
 mongoose.connect(
-    `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`,
+    `mongodb+srv://${USER}:${PASSWORD}@${CLUSTERNAME}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -41,14 +40,12 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 
-
 // Routes
 app.use("/", Router);
 app.use("/api/auth", authRoutes);
 app.use("/api/addUser", userRoutes);
 app.use("/api/updateUser/:account", updateUserRoutes);
 app.use("/api", addOrder);
-
 
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);
