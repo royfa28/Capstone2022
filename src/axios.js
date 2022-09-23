@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create(
-    {baseURL: "https://test-deploy.d31mrd1r61idsu.amplifyapp.com/"}
+    {baseURL: "https://54.206.59.240/"}
 )
 
 export default instance;
