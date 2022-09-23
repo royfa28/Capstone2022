@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT
 const { USER, PASSWORD, CLUSTERNAME, DBNAME } = process.env;
-console.log(USER, PASSWORD, CLUSTERNAME, DBNAME);
+// console.log(USER, PASSWORD, CLUSTERNAME, DBNAME);
 
 mongoose.connect(
     `mongodb+srv://${USER}:${PASSWORD}@${CLUSTERNAME}.mongodb.net/${DBNAME}?retryWrites=true&w=majority`,

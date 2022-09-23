@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import Axios from "axios";
+import Axios from "../axios.js";
 
 const productsCxt = createContext();
 export const useMyProductsContext = () => useContext(productsCxt);
@@ -18,6 +18,7 @@ function ProductsContext(props) {
             },
         }).then((response) => {
             setProducts(response.data);
+            console.log("Axios work");
         }).catch(() => {
             console.log("Internal server error");
         })
