@@ -18,8 +18,9 @@ export default function ShoppingCart() {
     let countTotal = 0;
 
     useEffect(() => {
-        if (!localStorage.getItem("token")) {
-        } else {
+        // Determine if local storage is empty or not
+        if (!localStorage.getItem("token")) { }
+        else {
             const decodedToken = JWTDecode(localStorage.getItem("token"));
             viewAccount(decodedToken._id);
         }
@@ -43,10 +44,10 @@ export default function ShoppingCart() {
     }, [shoppingCart]);
 
     function checkout(cart) {
+        // If user is not logged on, alert user to login.
         if (!localStorage.getItem("token")) {
             alert("You need to login");
         } else {
-            console.log(accountDetails);
             createOrder(accountDetails, cart, totalPrice);
             localStorage.removeItem("Cart");
             window.location.reload(false);

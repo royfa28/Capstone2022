@@ -13,7 +13,7 @@ export default function AccountDetailsPage() {
     function saveFullName() {
         const newName = fullNameRef.current.value
         console.log("Full name is: ", newName);
-        updateAccount({ ...accountDetails, phoneNumber: newName });
+        updateAccount({ ...accountDetails, fullName: newName });
         fullNameRef.current.value = "";
     }
 
