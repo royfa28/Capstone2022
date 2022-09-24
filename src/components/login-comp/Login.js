@@ -47,7 +47,7 @@ export default function LoginModal(props) {
                     {register ? "Register" : "Login"}
                 </Modal.Title>
             </Modal.Header>
-            
+
             <Modal.Body >
                 <Form className="modal-container" onSubmit={(e) => handleSubmit(e)}>
 
@@ -76,16 +76,14 @@ export default function LoginModal(props) {
                             <Form.Control type="phoneNumber" placeholder="Phone Number" name="phone" />
                         </Form.Group> : null}
                     {error && <div>{error}</div>}
-                    <Form.Label onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
-                    <Form.Group>
-
-                        <Button variant="secondary" onClick={changeModal}>
-                            Close
-                        </Button>
-                        <Button variant="primary" type='submit'>
+                    <Form.Group className="d-grid gap-2">
+                        <Button variant="primary" type='submit' 
+                        className="btn btn-primary btn-block">
                             {register ? "Register" : "Login"}
                         </Button>
                     </Form.Group>
+                    <Form.Label className="register-state" onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
+
                 </Form>
 
             </Modal.Body>

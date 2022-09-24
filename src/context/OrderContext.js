@@ -76,7 +76,7 @@ function OrderContext(props) {
             },
         }).then((response) => {
             console.log(response.data);
-            setOrderHistory(response.data);
+            setSingleHistory(response.data);
         }).catch((error) => {
             console.log(error);
             console.log("Internal server error");

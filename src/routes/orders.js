@@ -30,8 +30,14 @@ router.get("/:orderID", async (request, response) => {
     var id = request.params.orderID;
     console.log("Test");
 
-    Order.findById(id).then((data) => {
-        // console.log("Data: ", data);
+    // await Order.find({ orderID: id }).then((data) => {
+    //     response.json(data);
+    // }).catch((error) => {
+    //     console.log("error", error);
+    // });
+
+    await Order.findById(id).then((data) => {
+        console.log(data.orderDetails);
         response.json(data.orderDetails);
     }).catch((error) => {
         console.log("error", error);

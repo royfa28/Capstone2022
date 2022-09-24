@@ -45,7 +45,7 @@ export default function AccountPage() {
                     </Tab>
 
                     <Tab eventKey="Logout" title="Logout">
-                        <Button onClick={logout} variant="danger"> <Link to="/"> LOGOUT </Link></Button>
+                        <Link to="/"><Button onClick={logout} variant="danger"> <Link to="/"> LOGOUT </Link></Button></Link>
                     </Tab>
                 </Tabs>
             </Container>

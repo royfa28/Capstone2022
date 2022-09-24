@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 
 import { useMyOrderContext } from "../../context/OrderContext";
@@ -21,7 +22,23 @@ export default function OrderHistoryPage() {
     return (
         <>
             {/* {console.log(id)} */}
-            <div>OrderHistoryPage</div>
+            <Container fluid="lg">
+                Order {id.orderID}
+
+                {singleHistory.map((data, index) => {
+                    return (
+                        <Row key={index}>
+                            <Col>
+                                image place holder
+                            </Col>
+                            <Col >
+                                <span> {data.productTitle} Qty: {data.qty} Price: ${data.productPrice}</span>
+                            </Col>
+                        </Row>
+                    )
+                })}
+
+            </Container>
         </>
     )
 }
