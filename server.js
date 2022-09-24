@@ -38,20 +38,22 @@ app.use(express.urlencoded({ extended: false }));
 //     console.log("Connected successfully");
 // });
 
-const Router = require("./src/server/routes");
+const productsRoutes = require("./src/routes/products");
 const authRoutes = require("./src/routes/auth");
-const userRoutes = require("./src/routes/users");
+const addUserRoutes = require("./src/routes/addUser");
 const updateUserRoutes = require("./src/routes/updateUser");
-const addOrder = require("./src/routes/orders");
+const accountRoutes = require("./src/routes/accountPage")
+const ordersRoutes = require("./src/routes/orders");
 
 app.use(cors());
 
 // Routes
-app.use("/", Router);
+app.use("/", productsRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/addUser", userRoutes);
+app.use("/api/addUser", addUserRoutes);
 app.use("/api/updateUser/:account", updateUserRoutes);
-app.use("/api", addOrder);
+app.use("/Account_Page", accountRoutes);
+app.use("/api", ordersRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);

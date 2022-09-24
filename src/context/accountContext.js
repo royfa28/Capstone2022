@@ -1,4 +1,4 @@
-import Axios from "axios";
+import Axios from "../axios";
 import { createContext, useContext, useState } from "react";
 
 const accountCxt = createContext();
