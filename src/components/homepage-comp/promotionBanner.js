@@ -1,40 +1,47 @@
 import React, { useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
+import { PromotionBannerData } from './PromotionBannerData';
 import './promotionBanner.css';
-import Banner1 from '../../assets/Banners/Banner1.png';
+import { Container } from 'react-bootstrap';
 
 function PromotionBanner() {
 
-    const [index, setIndex] = useState(0);
+    const [current, setCurrent] = useState(0);
+    const length = PromotionBannerData.length;
 
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
+    const nextSlide = () => {
+        setCurrent(current === length - 1 ? 0 : current + 1);
     };
 
+    const prevSlide = () => {
+        setCurrent(current === 0 ? length - 1 : current - 1);
+    };
+
+    if (!Array.isArray(PromotionBannerData) || PromotionBannerData.length <= 0) {
+        return null;
+    }
+
     return (
-        <div className="container-lg">
-            <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-banner'>
-                <Carousel.Item>
-                    <img className="d-block w-100" src={Banner1} alt="First slide" />
+        <>
+            <Container fluid="lg" className="center">
+                <section className="slider promotion-slider">
+                    <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
+                    <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
+                    {PromotionBannerData.map((slide, index) => {
+                        return (
+                            <div className={index === current ? 'slide active' : 'slide'}
+                                key={index} >
+                                {index === current && (
+                                    <img src={slide.image} alt='travel image' className="promotion-image" />
+                                )}
+                            </div>
+                        );
+                    })}
+                </section>
+            </Container>
 
-                    {/* No caption needed for now
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption> */}
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img className="d-block w-100" src={Banner1} alt="Second slide" />
-                </Carousel.Item>
-
-                <Carousel.Item>
-                    <img className="d-block w-100" src={Banner1} alt="Third slide" />
-                </Carousel.Item>
-
-            </Carousel>
-        </div>
+        </>
     )
 }
 
