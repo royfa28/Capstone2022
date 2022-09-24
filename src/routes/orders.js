@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const { ShoppingCart } = require("../models/OrderModel");
+const { Order } = require("../models/OrderModel");
 
 router.post("/addOrder/:order", async (request, response) => {
     try {
-        await new ShoppingCart({
+        await new Order({
             emailAddress: request.body.emailAddress,
             orderDate: request.body.orderDate,
             totalPrice: request.body.totalPrice,
@@ -17,7 +17,7 @@ router.post("/addOrder/:order", async (request, response) => {
 
 router.get("/allOrders/:email", async (request, response) => {
     // console.log(request.params);
-    ShoppingCart.find({ emailAddress: request.params.email })
+    Order.find({ emailAddress: request.params.email })
         .then((data) => {
             // console.log(data);
             response.json(data);
@@ -25,5 +25,17 @@ router.get("/allOrders/:email", async (request, response) => {
             console.log("error", error);
         });
 })
+
+router.get("/:orderID", async (request, response) => {
+    var id = request.params.orderID;
+    console.log("Test");
+
+    Order.findById(id).then((data) => {
+        // console.log("Data: ", data);
+        response.json(data.orderDetails);
+    }).catch((error) => {
+        console.log("error", error);
+    });
+});
 
 module.exports = router;

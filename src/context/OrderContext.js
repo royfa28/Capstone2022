@@ -9,6 +9,7 @@ export const useMyOrderContext = () => useContext(OrderCxt);
 function OrderContext(props) {
 
     const [orderHistory, setOrderHistory] = useState([]);
+    const [singleHistory, setSingleHistory] = useState([]);
 
     const createOrder = (account, product, totalPrice) => {
         var date = moment(new Date()).format('MMMM Do YYYY');
@@ -20,6 +21,7 @@ function OrderContext(props) {
                 productID: item._id,
                 productPrice: item.productPrice,
                 qty: item.qty,
+                productTitle: item.productTitle,
             });
         })
         orderData = {
@@ -63,9 +65,27 @@ function OrderContext(props) {
         });
     }
 
+    // Get single order history
+    const getSingleHistory = async (orderID) => {
+        console.log(orderID);
+        Axios({
+            url: `api/${orderID}`,
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((response) => {
+            console.log(response.data);
+            setOrderHistory(response.data);
+        }).catch((error) => {
+            console.log(error);
+            console.log("Internal server error");
+        });
+    }
+
     const Values = {
-        orderHistory,
-        createOrder, viewOrders
+        orderHistory, singleHistory,
+        createOrder, viewOrders, getSingleHistory
     }
     return (
         <OrderCxt.Provider value={Values}>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ProductBanner from "./ProductBanner";
 import { useParams } from "react-router-dom";
 
-import { Row, Col, Card, Nav, Tab, Tabs } from 'react-bootstrap';
+import { Row, Col, Card, Tab, Tabs } from 'react-bootstrap';
 
 import { useMyProductsContext } from "../../context/ProductsContext";
 import { Container } from 'react-bootstrap';
@@ -23,7 +23,6 @@ export default function ProductPage() {
 
         return () => clearInterval(interval);
     }, []);
-    console.log(singleProduct);
 
     return (
         <div>
