@@ -27,11 +27,13 @@ export default function ProductPage() {
     return (
         <div>
             <Container>
-                <Row className="Product-Page">
-                    <Col md={8} xs={12}><ProductImageSlider /></Col>
+                <Row className="Product-Page justify-content-between">
+                    <Col md={7} xs={12} className="product-Col">
+                        <ProductImageSlider />
+                    </Col>
 
-                    <Col md={4} xs={12}>
-                        <Card>
+                    <Col md={4} xs={12} className="product-Col">
+                        <Card className="product-card">
                             <Card.Body>
                                 <p>Genre: {singleProduct.productGenre}</p>
                                 <p>Platform: {singleProduct.productPlatform}</p>

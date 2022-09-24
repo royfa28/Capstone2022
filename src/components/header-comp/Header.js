@@ -22,7 +22,7 @@ export default function Header() {
     return (
         <>
             <header>
-                <Container>
+                <Container fluid="lg">
                     <Row className="justify-content-between header-row">
                         {/* <!-- Logo --> */}
                         <Col className="col-2">

@@ -1,38 +1,40 @@
 import React, { useState } from 'react'
-import Carousel from 'react-bootstrap/Carousel';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 import { SliderData } from './SliderData';
-
-import Banner1 from '../../assets/Banners/Banner1.png';
+import "./ProductImageSlider.css"
 
 export default function ProductImageSlider() {
-    const [index, setIndex] = useState(0);
 
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
+    const [current, setCurrent] = useState(0);
+    const length = SliderData.length;
+
+    const nextSlide = () => {
+        setCurrent(current === length - 1 ? 0 : current + 1);
     };
 
+    const prevSlide = () => {
+        setCurrent(current === 0 ? length - 1 : current - 1);
+    };
+
+    if (!Array.isArray(SliderData) || SliderData.length <= 0) {
+        return null;
+    }
+
     return (
-        <Carousel activeIndex={index} onSelect={handleSelect} className='carousel-banner'>
-            <Carousel.Item>
-                <img className="d-block w-100" src={Banner1} alt="First slide" />
-
-                {/* No caption needed for now
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                </Carousel.Caption> */}
-            </Carousel.Item>
-
-            <Carousel.Item>
-                <img className="d-block w-100" src={Banner1} alt="Second slide" />
-            </Carousel.Item>
-
-            <Carousel.Item>
-                <img className="d-block w-100" src={Banner1} alt="Third slide" />
-            </Carousel.Item>
-
-        </Carousel>
+        <section className="slider">
+            <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
+            <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
+            {SliderData.map((slide, index) => {
+                return (
+                    <div className={index === current ? 'slide active' : 'slide'}
+                        key={index} >
+                        {index === current && (
+                            <img src={slide.image} alt='travel image' className="image" />
+                        )}
+                    </div>
+                );
+            })}
+        </section>
     )
 }
