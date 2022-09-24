@@ -54,7 +54,7 @@ router.get("/products", async (request, response) => {
 
     productModel.find({}).then((data) => {
         // console.log("Data: ", data);
-        console.log("Test");
+        console.log(data);
         response.json(data);
     }).catch((error) => {
         console.log("error", error);
