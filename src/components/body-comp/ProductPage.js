@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import ProductBanner from "./ProductBanner";
+import ProductImageSlider from "./ProductImageSlider";
 import { useParams } from "react-router-dom";
 
 import { Row, Col, Card, Tab, Tabs } from 'react-bootstrap';
@@ -28,7 +28,7 @@ export default function ProductPage() {
         <div>
             <Container>
                 <Row className="Product-Page">
-                    <Col md={8} xs={12}><ProductBanner /></Col>
+                    <Col md={8} xs={12}><ProductImageSlider /></Col>
 
                     <Col md={4} xs={12}>
                         <Card>
@@ -44,11 +44,10 @@ export default function ProductPage() {
                     </Col>
                 </Row>
 
-                <Row> {singleProduct.productTitle} </Row>
-
-                <Row>
+                <Row className="product-tab-content">
                     <Tabs defaultActiveKey="Product Details" id="justify-tab-example" className="mb-3 mt-3" justify="true">
                         <Tab eventKey="Product Details" title="Product Details">
+                            <h3>{singleProduct.productTitle}</h3>
                             {singleProduct.productDescription}
                         </Tab>
 

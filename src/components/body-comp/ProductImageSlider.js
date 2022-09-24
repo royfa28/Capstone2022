@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+
+import { SliderData } from './SliderData';
 
 import Banner1 from '../../assets/Banners/Banner1.png';
 
-export default function ProductBanner() {
+export default function ProductImageSlider() {
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex, e) => {

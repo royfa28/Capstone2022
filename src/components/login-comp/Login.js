@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Modal } from 'react-bootstrap';
+import { Form, Button, Modal, FloatingLabel } from 'react-bootstrap';
 
 import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
@@ -52,33 +52,43 @@ export default function LoginModal(props) {
                 <Form className="modal-container" onSubmit={(e) => handleSubmit(e)}>
 
                     <Form.Group className="mb-3" controlId="formControlsEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" name="email" required />
+                        <FloatingLabel controlId="floatingEmail"
+                            label="Email address">
+                            <Form.Control type="email" placeholder="Enter email" name="email" required />
+                        </FloatingLabel>
+
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" name="password" required />
+                        <FloatingLabel controlId="floatingPassword" label="Password">
+                            <Form.Control type="password" placeholder="Password" name="password" required />
+                        </FloatingLabel>
                     </Form.Group>
 
                     {/* If Register is true show content below if not null */}
                     {register ?
                         <Form.Group className="mb-3" controlId="basic-addon2" id="fullname">
-                            <Form.Label>Full name</Form.Label>
-                            <Form.Control placeholder="Enter full name" name="fullname" />
+                            <FloatingLabel controlId="floatingInput"
+                                label="Full Name">
+                                <Form.Control placeholder="Enter full name" name="fullname" />
+                            </FloatingLabel>
                         </Form.Group> : null}
+
                     {register ?
                         <Form.Group className="mb-3" controlId="formBasicPhone">
-                            <Form.Label>Phone Number</Form.Label>
-                            <Form.Control type="phoneNumber" placeholder="Phone Number" name="phone" />
+                            <FloatingLabel controlId="floatingInput"
+                                label="Phone Number">
+                                <Form.Control type="phoneNumber" placeholder="Phone Number" name="phone" />
+                            </FloatingLabel>
                         </Form.Group> : null}
+                        
                     {error && <div>{error}</div>}
                     <Form.Group className="d-grid gap-2">
-                        <Button variant="primary" type='submit' 
-                        className="btn btn-primary btn-block">
+                        <Button variant="primary" type='submit'
+                            className="btn btn-primary btn-block">
                             {register ? "Register" : "Login"}
                         </Button>
                     </Form.Group>
