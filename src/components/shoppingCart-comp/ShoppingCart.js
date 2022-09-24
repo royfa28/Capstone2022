@@ -17,17 +17,13 @@ export default function ShoppingCart() {
 
     let countTotal = 0;
 
-    // Get account details
-    const decodedToken = JWTDecode(localStorage.getItem("token"));
-
     useEffect(() => {
-        viewAccount(decodedToken._id);
-        const interval = setInterval(() => {
+        if (!localStorage.getItem("token")) {
+        } else {
+            const decodedToken = JWTDecode(localStorage.getItem("token"));
             viewAccount(decodedToken._id);
-        }, 1000 * 3600);
-
-        return () => clearInterval(interval);
-    }, []);
+        }
+    }, [localStorage.getItem("token")]);
 
     // Get shopping cart into useState if there is local storage
     useEffect(() => {
@@ -47,14 +43,20 @@ export default function ShoppingCart() {
     }, [shoppingCart]);
 
     function checkout(cart) {
-        createOrder(accountDetails, cart, totalPrice);
+        if (!localStorage.getItem("token")) {
+            alert("You need to login");
+        } else {
+            console.log(accountDetails);
+            createOrder(accountDetails, cart, totalPrice);
+            localStorage.removeItem("Cart");
+            window.location.reload(false);
+        }
     }
 
     return (
         <>
             <Container className="lg-fluid">
                 {/* Loop through Shoppingcart data and show in page */}
-
                 <Row className="mt-3">
                     <Col lg={8} md={12}>
                         {shoppingCart.map((data, key) => {
@@ -104,7 +106,8 @@ export default function ShoppingCart() {
                                 </Col>
                             </Row>
                             <Row className="justify-content-center">
-                                {shoppingCart.length === 0 ? (<Button disabled className="checkout-button" onClick={() => checkout(shoppingCart)}>disabled</Button>)
+                                {shoppingCart.length === 0 ?
+                                    (<Button disabled className="checkout-button" onClick={() => checkout(shoppingCart)}>disabled</Button>)
                                     : <Button className="checkout-button" onClick={() => checkout(shoppingCart)}>Checkout</Button>}
 
                             </Row>
