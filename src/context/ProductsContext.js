@@ -19,7 +19,8 @@ function ProductsContext(props) {
         }).then((response) => {
             setProducts(response.data);
             console.log("Axios work");
-        }).catch(() => {
+        }).catch((error) => {
+            // console.log(error);
             console.log("Internal server error");
         })
 

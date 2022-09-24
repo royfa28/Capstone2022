@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import Axios from "axios";
+import Axios from "../axios";
 
 const loginCxt = createContext();
 export const useMyLoginContext = () => useContext(loginCxt);

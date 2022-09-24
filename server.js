@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8080
 // const { USER, PASSWORD, CLUSTERNAME, DBNAME } = process.env;
 // console.log(USER, PASSWORD, CLUSTERNAME, DBNAME);
 
@@ -38,13 +38,14 @@ app.use(express.urlencoded({ extended: false }));
 //     console.log("Connected successfully");
 // });
 
-app.use(cors());
-
 const Router = require("./src/server/routes");
 const authRoutes = require("./src/routes/auth");
 const userRoutes = require("./src/routes/users");
 const updateUserRoutes = require("./src/routes/updateUser");
 const addOrder = require("./src/routes/orders");
+
+app.use(cors());
+
 // Routes
 app.use("/", Router);
 app.use("/api/auth", authRoutes);
