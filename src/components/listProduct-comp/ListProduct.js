@@ -9,9 +9,11 @@ export default function ListProduct() {
     const [dropdownTitle, setDropdownTitle] = useState('Select Game');
 
     const handleSelect = (e) => {
-        console.log(e);
-        setDropdownValue(e);
-        setDropdownTitle(e);
+        // Get data from the JSON data and parse it into a readable array
+        const values = JSON.parse(e);
+        console.log(values);
+        setDropdownValue(values._id);
+        setDropdownTitle(values.productTitle);
     }
 
     const { products, getAllProducts } = useMyProductsContext();
@@ -34,7 +36,7 @@ export default function ListProduct() {
                         onSelect={handleSelect}>
                         {products.map((data, index) => {
                             return (
-                                <Dropdown.Item key={index} eventKey={data._id}>{data.productTitle}</Dropdown.Item>
+                                <Dropdown.Item key={index} eventKey={JSON.stringify(data)}>{data.productTitle}</Dropdown.Item>
                             )
                         })}
                     </DropdownButton>
@@ -42,7 +44,8 @@ export default function ListProduct() {
                     <Form.Group className="mb-3" controlId="basic-addon2" id="userPrice">
                         <FloatingLabel controlId="floatingInput"
                             label="Set your price">
-                            <Form.Control placeholder="Enter your desired price" name="userPrice" />
+                            <Form.Control type="number" step="0.01" min="1"
+                            placeholder="Enter your desired price" name="userPrice"/>
                         </FloatingLabel>
                     </Form.Group>
 

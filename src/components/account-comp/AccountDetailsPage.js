@@ -27,7 +27,7 @@ export default function AccountDetailsPage() {
     return (
         <>
             <Container fluid>
-                <Row>
+                <Row className="account-details">
                     {/* {console.log(accountDetails)} */}
                     <h3>Personal Details</h3>
                     <Row className="justify-content-between mb-2">
@@ -56,13 +56,13 @@ export default function AccountDetailsPage() {
                     }
                 </Row>
 
-                <Row>
+                <Row className="account-details">
                     <h3>Contact Details</h3>
                     <Row className="justify-content-between mb-2">
-                        <Col>{accountDetails.emailAddress}</Col>
+                        <Col><h5>{accountDetails.emailAddress}</h5></Col>
                     </Row>
                     <Row className="justify-content-between  mb-2">
-                        <Col>{accountDetails.phoneNumber}</Col>
+                        <Col><h5>{accountDetails.phoneNumber}</h5></Col>
                         <Col className="col-1">
                             {(!changeContactDetails) ?
                                 <Button onClick={() => setChangeContactDetails(true)}>Edit</Button> : null}
@@ -87,7 +87,7 @@ export default function AccountDetailsPage() {
                     }
                 </Row>
 
-                <Row>
+                <Row className="account-details">
                     <Row className="justify-content-between mb-2">
                         <Col><h3>Delivery Address</h3></Col>
                         <Col className="col-1"><Button>Add</Button></Col>

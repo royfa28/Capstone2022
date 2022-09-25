@@ -31,7 +31,7 @@ export default function AccOrderHistoryPage() {
                         <Link to={"/" + data._id} key={index}>
                             <Row className="order-history-card mb-4" >
                                 <Row className="justify-content-center">
-                                    Order ID: #{data.orderID}
+                                    <p>Order ID: #{data.orderID}</p>
                                 </Row>
                                 <Row className="justify-content-between">
                                     <Col>

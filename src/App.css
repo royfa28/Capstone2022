@@ -8,5 +8,9 @@ body {
 #root {
     min-height:100%;
     position:relative;
-    background: linear-gradient(gray, black)
+    background-color: #191624;
+}
+
+h2, h3, h4, h5, label, p{
+    color: #87BEBD;
 }
