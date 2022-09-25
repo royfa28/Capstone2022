@@ -41,7 +41,7 @@ export default function AccountPage() {
                         <AccOrderHistoryPage />
                     </Tab>
                     <Tab eventKey="Products Listed" title="Products Listed">
-                        <Link to="/Account_Page/List-Product"><Button >List product</Button></Link>
+                        <Link to="/List-Product"><Button >List product</Button></Link>
                     </Tab>
 
                     <Tab eventKey="Logout" title="Logout">

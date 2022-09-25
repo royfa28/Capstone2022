@@ -1,0 +1,15 @@
+.product-drop-down {
+    margin: 5px 0 5px 0;
+}
+
+.dropdown-menu.show {
+    width: 100%;
+}
+
+.list-product-form {
+    width: 100%;
+}
+
+.list-product-container {
+    max-width: 720px !important;
+}
