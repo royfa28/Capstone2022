@@ -8,6 +8,7 @@ function ProductsContext(props) {
 
     const [products, setProducts] = useState([]);
     const [singleProduct, setSingleProduct] = useState([]);
+    const [otherSellers, setOtherSellers] = useState([]);
 
     const getAllProducts = async () => {
         Axios({
@@ -18,7 +19,6 @@ function ProductsContext(props) {
             },
         }).then((response) => {
             setProducts(response.data);
-            console.log("Axios work");
         }).catch((error) => {
             // console.log(error);
             console.log("Internal server error");
@@ -39,15 +39,29 @@ function ProductsContext(props) {
         })
     }
 
+    const getOtherSeller = async (productID) => {
+        Axios({
+            url: `/OtherSeller/${productID}`,
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((response) => {
+            setOtherSellers(response.data);
+            // console.log("Axios work");
+        }).catch((error) => {
+            // console.log(error);
+            console.log("Internal server error");
+        })
+    }
+
+    // Call the router at listProduct.js
     const listProduct = async (productID, productPrice, emailAddress) => {
         const productData = {
             productID: productID,
             productPrice: productPrice,
             emailAddress: emailAddress,
         }
-
-        console.log(productData);
-
         Axios({
             url: `List-Product/${productData}`,
             method: 'POST',
@@ -63,8 +77,8 @@ function ProductsContext(props) {
     }
 
     const Values = {
-        products, singleProduct,
-        getAllProducts, getSingleProduct, listProduct
+        products, singleProduct, otherSellers,
+        getAllProducts, getSingleProduct, listProduct, getOtherSeller
     }
 
     return (

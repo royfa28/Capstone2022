@@ -9,7 +9,7 @@ function ShoppingCartContext(props) {
     const [totalPrice, setTotalPrice] = useState();
 
     const addItems = (product) => {
-        const exist = shoppingCart.find(x => x._id === product._id);
+        const exist = shoppingCart.find(x => x._id === product._id && x.productPrice === product.productPrice);
         if (!exist) {
             setShoppingCart([...shoppingCart, {
                 ...product,

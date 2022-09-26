@@ -1,10 +1,11 @@
 const router = require("express").Router();
-const { ListProduct } = require("../models/ListProductModel");
+const { OtherSeller } = require("../models/ListProductModel");
+
 
 router.post("/:product", async (request, response) => {
 
     try {
-        await new ListProduct({
+        await new OtherSeller({
             productID: request.body.productID,
             productPrice: request.body.productPrice,
             emailAddress: request.body.emailAddress,

@@ -6,6 +6,6 @@ const ListProductSchema = new mongoose.Schema({
     emailAddress: { type: String }
 }, { collection: "productsListed" });
 
-const ListProduct = mongoose.model("products", ListProductSchema);
+const OtherSeller = mongoose.model("Sellers", ListProductSchema);
 
-module.exports = { ListProduct }
+module.exports = { OtherSeller };

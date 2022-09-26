@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Col, Row, Container } from "react-bootstrap";
 
 import "./OrderCard.css"
@@ -11,8 +12,6 @@ export default function AccOrderHistoryPage() {
 
     const { accountDetails } = useMyAccountContext();
     const { viewOrders, orderHistory } = useMyOrderContext();
-
-    let navigate = useNavigate();
 
     useEffect(() => {
         viewOrders(accountDetails.emailAddress);

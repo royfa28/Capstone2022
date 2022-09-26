@@ -7,6 +7,7 @@ import { Row, Col, Card, Tab, Tabs } from 'react-bootstrap';
 import { useMyProductsContext } from "../../context/ProductsContext";
 import { Container } from 'react-bootstrap';
 
+import OtherSeller from './OtherSeller';
 import "./ProductPage.css"
 
 export default function ProductPage() {
@@ -54,7 +55,7 @@ export default function ProductPage() {
                         </Tab>
 
                         <Tab eventKey="Other Seller" title="Other Seller">
-                            Other Seller
+                            <OtherSeller />
                         </Tab>
                     </Tabs>
                 </Row>

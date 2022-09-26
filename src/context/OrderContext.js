@@ -57,8 +57,7 @@ function OrderContext(props) {
                 "Content-Type": "application/json"
             },
         }).then((response) => {
-            // console.log("Success");
-            console.log(response.data);
+            // console.log(response.data);
             setOrderHistory(response.data);
         }).catch((error) => {
             console.log(error);

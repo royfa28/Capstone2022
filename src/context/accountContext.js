@@ -8,6 +8,7 @@ function AccountContext(props) {
     const [changePersonalDetails, setChangePersonalDetails] = useState(false);
     const [changeContactDetails, setChangeContactDetails] = useState(false);
     const [accountDetails, setAccountDetails] = useState([]);
+    const [productListed, setProductListed] = useState([]);
 
     const updateAccount = (account) => {
         console.log(account);
@@ -43,9 +44,25 @@ function AccountContext(props) {
         });
     }
 
+    const viewListedProducts = (userID) => {
+        Axios({
+            url: `Account_Page/product-listed/${userID}`,
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then((response) => {
+            // Set the accountDetails with the response taken from the GET
+            setProductListed(response.data);
+            // console.log(response.data);
+        }).catch((error) => {
+            console.log("Internal server error");
+        });
+    }
+
     const Values = {
-        accountDetails, changePersonalDetails, changeContactDetails,
-        viewAccount, setChangePersonalDetails, setChangeContactDetails, updateAccount
+        accountDetails, changePersonalDetails, changeContactDetails, productListed,
+        viewAccount, setChangePersonalDetails, setChangeContactDetails, updateAccount, viewListedProducts
     }
     return (
         <accountCxt.Provider value={Values}>

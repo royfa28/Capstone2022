@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productModel = require("../models/productModel");
+const { OtherSeller } = require("../models/ListProductModel");
 
 router.post("/add_product", async (request, response) => {
     const product = new productModel(request.body);
@@ -31,11 +32,22 @@ router.get("/products/:id", async (request, response) => {
     console.log(id);
 
     productModel.findById(id).then((data) => {
-        console.log("Data: ", data);
+        // console.log("Data: ", data);
         response.json(data);
     }).catch((error) => {
         console.log("error", error);
     });
 });
+
+// Find list of other sellers from games
+router.get("/OtherSeller/:productID", async (request, response) => {
+    var productID = request.params.productID;
+
+    OtherSeller.find({ productID: productID }).then((data) => {
+        response.json(data);
+    }).catch((error) => {
+
+    });
+})
 
 module.exports = router;
