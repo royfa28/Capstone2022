@@ -4,6 +4,7 @@ import { Form, Button, Modal, FloatingLabel } from 'react-bootstrap';
 import { useMyLoginContext } from "../../context/loginContext";
 import './login.css';
 
+// Login or register modal
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
@@ -20,6 +21,7 @@ export default function LoginModal(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+        // Login to the website if false, otherwise register and add new account
         if (!register) {
             const userAccount = {
                 emailAddress: formData.get("email"),
@@ -33,8 +35,6 @@ export default function LoginModal(props) {
                 emailAddress: formData.get("email"),
                 password: formData.get("password"),
                 phoneNumber: formData.get("phone"),
-                // orderHistory: [],
-                // address: null,
             }
             addAccount(userAccount);
         }
@@ -92,6 +92,7 @@ export default function LoginModal(props) {
                             {register ? "Register" : "Login"}
                         </Button>
                     </Form.Group>
+                    {/* Change modal depending on register or login */}
                     <Form.Label className="register-state" onClick={changeState}>{register ? "Already a user? Login here" : "Not a user? Sign up here"}</Form.Label>
 
                 </Form>

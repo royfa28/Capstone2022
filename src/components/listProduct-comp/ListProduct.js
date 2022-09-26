@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { Form, Container, FloatingLabel, Dropdown, DropdownButton, Button } from "react-bootstrap";
 import JWTDecode from "jwt-decode";
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import "./ListProduct.css"
 
+// This page is where user can post or create a new listings
 export default function ListProduct() {
     const [productID, setProductID] = useState('');
     const [productTitle, setProductTitle] = useState('Select Game');
@@ -16,7 +18,7 @@ export default function ListProduct() {
     const handleSelect = (e) => {
         // Get data from the JSON data and parse it into a readable array
         const values = JSON.parse(e);
-        console.log(values);
+        // console.log(values);
         setProductID(values._id);
         setProductTitle(values.productTitle);
     }
@@ -24,6 +26,7 @@ export default function ListProduct() {
     const { products, getAllProducts, listProduct } = useMyProductsContext();
     const { accountDetails, viewAccount } = useMyAccountContext();
 
+    // Load all the products, so that we can populate the dropdown after
     useEffect(() => {
         getAllProducts();
         const interval = setInterval(() => {
@@ -33,6 +36,7 @@ export default function ListProduct() {
         return () => clearInterval(interval);
     }, []);
 
+    // Load the account data, in case the page was refresh
     useEffect(() => {
         // Determine if local storage is empty or not
         if (!localStorage.getItem("token")) { }
@@ -45,15 +49,16 @@ export default function ListProduct() {
     const addProduct = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
+        // If it is default, dont proceed
         if (productTitle === "Select Game") {
             console.log("selectgame")
         } else {
             const price = formData.get("userPrice");
-            // console.log(accountDetails.emailAddress);
             listProduct(productID, price, accountDetails.emailAddress);
-            // console.log(productTitle);
+            // Go back to homepage after successfully list
             navigate("/");
         }
+        // Reset all the form data
         e.target.reset();
     }
 
@@ -67,6 +72,7 @@ export default function ListProduct() {
                         onSelect={handleSelect}>
                         {products.map((data, index) => {
                             return (
+                                // Pass whole data instead of just 1 value, have to stringify the object
                                 <Dropdown.Item key={index} eventKey={JSON.stringify(data)}>{data.productTitle}</Dropdown.Item>
                             )
                         })}

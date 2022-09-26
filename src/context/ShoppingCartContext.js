@@ -9,6 +9,7 @@ function ShoppingCartContext(props) {
     const [totalPrice, setTotalPrice] = useState();
 
     const addItems = (product) => {
+        // If array did not exist, it will create a new one
         const exist = shoppingCart.find(x => x._id === product._id && x.productPrice === product.productPrice);
         if (!exist) {
             setShoppingCart([...shoppingCart, {

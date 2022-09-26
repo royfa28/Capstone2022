@@ -20,7 +20,7 @@ function AccountContext(props) {
             },
             data: account,
         }).then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             window.location.reload(false);
             setAccountDetails(response.data);
         }).catch((error) => {
@@ -44,6 +44,7 @@ function AccountContext(props) {
         });
     }
 
+    // Get the products listed based on the email address provided
     const viewListedProducts = (userID) => {
         Axios({
             url: `Account_Page/product-listed/${userID}`,
@@ -52,7 +53,7 @@ function AccountContext(props) {
                 "Content-Type": "application/json"
             },
         }).then((response) => {
-            // Set the accountDetails with the response taken from the GET
+            // Set the productlisted with the response taken from the GET
             setProductListed(response.data);
             // console.log(response.data);
         }).catch((error) => {

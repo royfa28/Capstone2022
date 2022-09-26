@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useState } from 'react'
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
@@ -6,6 +7,7 @@ import "./ProductImageSlider.css"
 
 export default function ProductImageSlider() {
 
+    // This is just templates to make the image slider on the homepage
     const [current, setCurrent] = useState(0);
     const length = SliderData.length;
 

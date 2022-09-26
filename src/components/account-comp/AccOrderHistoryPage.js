@@ -13,6 +13,7 @@ export default function AccOrderHistoryPage() {
     const { accountDetails } = useMyAccountContext();
     const { viewOrders, orderHistory } = useMyOrderContext();
 
+    // Function to load the order history
     useEffect(() => {
         viewOrders(accountDetails.emailAddress);
         const interval = setInterval(() => {
@@ -25,8 +26,12 @@ export default function AccOrderHistoryPage() {
     return (
         <>
             <Container fluid>
+
+                {/* Loop through the order history data and list in below */}
                 {orderHistory.map((data, index) => {
                     return (
+
+                        // When clicked will pass data to OrderHistoryPage.js as a params
                         <Link to={"/" + data._id} key={index}>
                             <Row className="order-history-card mb-4" >
                                 <Row className="justify-content-center">

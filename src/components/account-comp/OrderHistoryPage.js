@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
@@ -6,10 +7,12 @@ import { useMyOrderContext } from "../../context/OrderContext";
 
 export default function OrderHistoryPage() {
 
+    // Get the parameters that was passed from AccOrderHistoryPage
     let id = useParams();
 
     const { singleHistory, getSingleHistory } = useMyOrderContext();
 
+    // Get the single history from the database
     useEffect(() => {
         getSingleHistory(id.orderID);
         const interval = setInterval(() => {
@@ -23,6 +26,7 @@ export default function OrderHistoryPage() {
         <>
             {/* {console.log(id)} */}
             <Container fluid="lg">
+                {/* Currently not able to get the Order Number properly */}
                 Order {id.orderID}
 
                 {singleHistory.map((data, index) => {

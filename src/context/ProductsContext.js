@@ -10,6 +10,7 @@ function ProductsContext(props) {
     const [singleProduct, setSingleProduct] = useState([]);
     const [otherSellers, setOtherSellers] = useState([]);
 
+    // Get all products from database
     const getAllProducts = async () => {
         Axios({
             url: `/products`,
@@ -25,6 +26,7 @@ function ProductsContext(props) {
         })
     }
 
+    // Get single product details based on the product clicked
     const getSingleProduct = async (id) => {
         Axios({
             url: `/products/${id}`,
@@ -39,6 +41,7 @@ function ProductsContext(props) {
         })
     }
 
+    // Get all other sellers that sell the product
     const getOtherSeller = async (productID) => {
         Axios({
             url: `/OtherSeller/${productID}`,

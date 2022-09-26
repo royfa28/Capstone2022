@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, Button, Container } from 'react-bootstrap';
@@ -11,15 +12,17 @@ import { useMyAccountContext } from "../../context/accountContext";
 
 export default function AccountPage() {
 
+    // When logout was selected, remove token from local storage and go back to windows
     function logout() {
         console.log("Logout");
         localStorage.removeItem("token");
         window.location.reload();
-        // loginStatus();
     }
+    // Import JWTDecode to decode JWT string and decode it
     const decodedToken = JWTDecode(localStorage.getItem("token"));
     const { viewAccount } = useMyAccountContext();
 
+    // Load the view account to get account details for the rest of the page
     useEffect(() => {
         viewAccount(decodedToken._id);
         const interval = setInterval(() => {

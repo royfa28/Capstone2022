@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { Col, Row, Button, Container } from "react-bootstrap";
 import JWTDecode from "jwt-decode";
@@ -17,6 +18,7 @@ export default function ShoppingCart() {
 
     let countTotal = 0;
 
+    // Get the account details
     useEffect(() => {
         // Determine if local storage is empty or not
         if (!localStorage.getItem("token")) { }
@@ -32,6 +34,7 @@ export default function ShoppingCart() {
         if (cart !== null) setShoppingCart(JSON.parse(cart));
     }, []);
 
+    // Everything the shopping cart was changed, it will reflect on the 'Cart' local storage
     useEffect(() => {
         localStorage.setItem("Cart", JSON.stringify(shoppingCart));
 
@@ -43,6 +46,7 @@ export default function ShoppingCart() {
         setTotalPrice(parseFloat(countTotal).toFixed(2));
     }, [shoppingCart]);
 
+    // Post the shopping cart into database
     function checkout(cart) {
         // If user is not logged on, alert user to login.
         if (!localStorage.getItem("token")) {

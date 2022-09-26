@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { Card, Col, Row, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
@@ -33,16 +35,17 @@ export default function ProductCard() {
 
         // Get total price by looping through the data
         shoppingCart.map(cart => {
-            countTotal =+ parseFloat(cart.subTotal + countTotal);
+            countTotal = + parseFloat(cart.subTotal + countTotal);
             // cart.subTotal = cart.qty * cart.productPrice;
         })
         setTotalPrice(parseFloat(countTotal).toFixed(2));
     }, [shoppingCart]);
 
     return (
-        <Row xs={3} sm={4} md={5} lg={6} xl={7}  className="g-4">
+        <Row xs={3} sm={4} md={5} lg={6} xl={7} className="g-4">
             {/* {console.log(shoppingCart)} */}
             {products.map((data, index) => {
+                // Create an array template, to pass the data
                 const item = {
                     _id: data._id,
                     productPrice: data.productPrice,
@@ -78,10 +81,8 @@ export default function ProductCard() {
                                         </div>
 
                                         <Button variant="danger" size="sm" onClick={() => removeItem(shoppingCart[getIndex(data._id)])}> Remove </Button>
-                                    </div>
-                                }
+                                    </div>}
                             </Card.Footer>
-
                         </Card>
                     </Col>
                 )

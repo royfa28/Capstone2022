@@ -9,7 +9,6 @@ function LoginContext(props) {
     const [modalShow, setModalShow] = useState(false);
     const [register, setRegister] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
-    // const [account, setAccount] = useState([]);
     const [error, setError] = useState("");
 
     const setModal = () => {
@@ -25,9 +24,8 @@ function LoginContext(props) {
         setLoggedIn(!loggedIn);
     };
 
+    // Create a new account
     const addAccount = (account) => {
-        console.log(account);
-
         Axios({
             url: 'api/addUser',
             method: 'POST',
@@ -48,6 +46,7 @@ function LoginContext(props) {
         });
     };
 
+    // Check credentials with database, and create a token on succcessful login
     const loginAuth = (userAccount) => {
         Axios({
             url: 'api/auth',

@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect } from 'react';
@@ -11,6 +12,7 @@ export default function ProductListedPage() {
     const { accountDetails, productListed, viewListedProducts } = useMyAccountContext();
     const { singleProduct, getSingleProduct } = useMyProductsContext();
 
+    // Load the data from productslisted on database, and select only the matching email address
     useEffect(() => {
         viewListedProducts(accountDetails.emailAddress);
         const interval = setInterval(() => {
@@ -20,6 +22,8 @@ export default function ProductListedPage() {
         return () => clearInterval(interval);
     }, [accountDetails])
 
+    // Tried to make a new array so link automated productID === productTitle
+    // Currently not working
     let productID = [...new Set(productListed.map((data) => data.productID))];
 
     useEffect(() => {

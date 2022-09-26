@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import ProductImageSlider from "./ProductImageSlider";
 import { useParams } from "react-router-dom";
@@ -10,12 +11,15 @@ import { Container } from 'react-bootstrap';
 import OtherSeller from './OtherSeller';
 import "./ProductPage.css"
 
+// This page is the product details page, which will show individual product details
 export default function ProductPage() {
 
+    // Get the params that was passed from ProductCard.js
     let id = useParams();
 
     const { singleProduct, getSingleProduct } = useMyProductsContext();
 
+    // Get data from database, with the productID as the parameter
     useEffect(() => {
         getSingleProduct(id.productID);
         const interval = setInterval(() => {
