@@ -32,18 +32,13 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error: "));
-// db.once("open", function () {
-//     console.log("Connected successfully");
-// });
-
 const productsRoutes = require("./src/routes/products");
 const authRoutes = require("./src/routes/auth");
 const addUserRoutes = require("./src/routes/addUser");
 const updateUserRoutes = require("./src/routes/updateUser");
 const accountRoutes = require("./src/routes/accountPage")
 const ordersRoutes = require("./src/routes/orders");
+const listProductRoutes = require("./src/routes/listProduct");
 
 app.use(cors());
 
@@ -53,7 +48,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/addUser", addUserRoutes);
 app.use("/api/updateUser/:account", updateUserRoutes);
 app.use("/Account_Page", accountRoutes);
-app.use("/api", ordersRoutes)
+app.use("/api", ordersRoutes);
+app.use("/List-Product", listProductRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);

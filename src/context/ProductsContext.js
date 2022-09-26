@@ -37,19 +37,34 @@ function ProductsContext(props) {
         }).catch((error) => {
             console.log("Internal server error");
         })
+    }
 
-        // await Axios.get("/products/" + id)
-        //     .then((response) => {
-        //         setSingleProduct(response.data);
-        //         console.log(singleProduct);
-        //     }).catch(() => {
-        //         console.log("Internal server error");
-        //     })
+    const listProduct = async (productID, productPrice, emailAddress) => {
+        const productData = {
+            productID: productID,
+            productPrice: productPrice,
+            emailAddress: emailAddress,
+        }
+
+        console.log(productData);
+
+        Axios({
+            url: `List-Product/${productData}`,
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: productData,
+        }).then((response) => {
+            console.log(response.data);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     const Values = {
         products, singleProduct,
-        getAllProducts, getSingleProduct
+        getAllProducts, getSingleProduct, listProduct
     }
 
     return (

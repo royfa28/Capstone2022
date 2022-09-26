@@ -57,7 +57,7 @@ function LoginContext(props) {
             },
             data: userAccount
         }).then((response) => {
-            console.log("Access token is " + response.data.accessToken);
+            // console.log("Access token is " + response.data.accessToken);
             localStorage.setItem('token', response.data.accessToken)
             loginStatus();
             setModal();

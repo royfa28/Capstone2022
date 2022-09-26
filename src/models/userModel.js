@@ -10,11 +10,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    }, 
-    // orderHistory: {
-    //     type: Object,
-    //     required: false,
-    // },
+    },
     password: {
         type: String,
         required: true,
