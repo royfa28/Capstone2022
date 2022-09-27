@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Tab, Tabs, Button, Container } from 'react-bootstrap';
 import JWTDecode from "jwt-decode";
 
@@ -11,11 +11,14 @@ import ProductListedPage from './ProductListedPage';
 import { useMyAccountContext } from "../../context/accountContext";
 
 export default function AccountPage() {
+    
+    const navigate = useNavigate();
 
     // When logout was selected, remove token from local storage and go back to windows
     function logout() {
         console.log("Logout");
         localStorage.removeItem("token");
+        navigate("/");
         window.location.reload();
     }
     // Import JWTDecode to decode JWT string and decode it
@@ -49,7 +52,7 @@ export default function AccountPage() {
                     </Tab>
 
                     <Tab eventKey="Logout" title="Logout">
-                        <Link to="/"><Button onClick={logout} variant="danger"> <Link to="/"> LOGOUT </Link></Button></Link>
+                        <Button onClick={logout} variant="danger">  LOGOUT </Button>
                     </Tab>
                 </Tabs>
             </Container>
