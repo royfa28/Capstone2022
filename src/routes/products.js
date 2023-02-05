@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const productModel = require("../models/productModel");
+const { Product } = require("../models/productModel");
 const { OtherSeller } = require("../models/ListProductModel");
 
 router.post("/add_product", async (request, response) => {
-    const product = new productModel(request.body);
+    const product = new Product(request.body);
 
     try {
         await product.save();
@@ -16,7 +16,7 @@ router.post("/add_product", async (request, response) => {
 
 router.get("/products", async (request, response) => {
 
-    productModel.find({}).then((data) => {
+    Product.find({}).then((data) => {
         // console.log(data);
         response.json(data);
     }).catch((error) => {
@@ -31,7 +31,7 @@ router.get("/products/:id", async (request, response) => {
     var id = request.params.id;
     console.log(id);
 
-    productModel.findById(id).then((data) => {
+    Product.findById(id).then((data) => {
         // console.log("Data: ", data);
         response.json(data);
     }).catch((error) => {

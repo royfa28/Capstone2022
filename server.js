@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
 // const { USER, PASSWORD, CLUSTERNAME, DBNAME } = process.env;
 // console.log(USER, PASSWORD, CLUSTERNAME, DBNAME);
 
