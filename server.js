@@ -43,7 +43,7 @@ const listProductRoutes = require("./src/routes/listProduct");
 app.use(cors());
 
 // Routes
-app.use("/", productsRoutes);
+app.use("", productsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/addUser", addUserRoutes);
 app.use("/api/updateUser/:account", updateUserRoutes);

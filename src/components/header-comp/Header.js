@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './header.css';
 import LoginModal from '../login-comp/Login';
 // import NavBar from './Navigation';

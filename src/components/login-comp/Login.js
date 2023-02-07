@@ -8,15 +8,15 @@ import './login.css';
 export default function LoginModal(props) {
 
     // Use my context provider to handle Modal show / Hide
-    const { setModal, register, registerStatus, addAccount, loginAuth, error } = useMyLoginContext();
+    const { register, registerStatus, addAccount, loginAuth, error } = useMyLoginContext();
 
     function changeState() {
         registerStatus();
     }
 
-    function changeModal() {
-        setModal();
-    }
+    // function changeModal() {
+    //     setModal();
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,7 +84,7 @@ export default function LoginModal(props) {
                                 <Form.Control type="phoneNumber" placeholder="Phone Number" name="phone" />
                             </FloatingLabel>
                         </Form.Group> : null}
-                        
+
                     {error && <div>{error}</div>}
                     <Form.Group className="d-grid gap-2">
                         <Button variant="primary" type='submit'

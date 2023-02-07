@@ -33,6 +33,7 @@ function PromotionBanner() {
                             <div className={index === current ? 'slide active' : 'slide'}
                                 key={index} >
                                 {index === current && (
+                                    // eslint-disable-next-line jsx-a11y/img-redundant-alt
                                     <img src={slide.image} alt='travel image' className="promotion-image" />
                                 )}
                             </div>
