@@ -51,6 +51,7 @@ export default function ProductCard() {
                     productPrice: data.productPrice,
                     productTitle: data.productTitle,
                     productPlatform: data.productPlatform,
+                    productPhoto: data.productPhoto
                 }
 
                 return (
@@ -59,8 +60,8 @@ export default function ProductCard() {
                             {/* {console.log(shoppingCart[cartIndex])} */}
                             <Link to={"/ProductPage/" + data._id} >
                                 {/* Game picture */}
-                                <Card.Img variant="top" src={Spiderman} />
-
+                                <Card.Img variant="top" src={require("../../assets/Product Image/" + data.productPhoto)} />
+                                {console.log(data.productPhoto)}
                                 <Card.Body>
                                     <Card.Title className="align-items-baseline">
                                         <p>{data.productTitle}</p>

@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 
 import { useMyOrderContext } from "../../context/OrderContext";
 
+import "./OrderCard.css"
+
 export default function OrderHistoryPage() {
 
     // Get the parameters that was passed from AccOrderHistoryPage
@@ -25,7 +27,7 @@ export default function OrderHistoryPage() {
     return (
         <>
             {/* {console.log(id)} */}
-            <Container fluid="lg">
+            <Container fluid="lg" className="orderDetails">
                 {/* Currently not able to get the Order Number properly */}
                 Order {id.orderID}
 

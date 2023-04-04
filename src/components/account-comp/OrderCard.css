@@ -9,7 +9,12 @@ p {
     margin: 0;
 }
 
-h4{
+h4 {
     font-size: 18px;
     margin: 0;
+}
+
+.orderDetails {
+    font-size: 20px;
+    color: red;
 }
